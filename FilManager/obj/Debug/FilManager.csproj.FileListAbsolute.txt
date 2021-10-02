@@ -1,0 +1,13 @@
+D:\GitHub Project\FilManager\FilManager\obj\Debug\FilManager.csproj.AssemblyReference.cache
+D:\GitHub Project\FilManager\FilManager\obj\Debug\FilManager.Properties.Resources.resources
+D:\GitHub Project\FilManager\FilManager\obj\Debug\FilManager.csproj.GenerateResource.cache
+D:\GitHub Project\FilManager\FilManager\obj\Debug\FilManager.csproj.CoreCompileInputs.cache
+D:\GitHub Project\FilManager\FilManager\bin\Debug\FilManager.exe.config
+D:\GitHub Project\FilManager\FilManager\bin\Debug\FilManager.exe
+D:\GitHub Project\FilManager\FilManager\bin\Debug\FilManager.pdb
+D:\GitHub Project\FilManager\FilManager\obj\Debug\FilManager.exe
+D:\GitHub Project\FilManager\FilManager\obj\Debug\FilManager.pdb
+D:\GitHub Project\FilManager\FilManager\bin\Debug\userList.mdf
+D:\GitHub Project\FilManager\FilManager\bin\Debug\userList_log.ldf
+D:\GitHub Project\FilManager\FilManager\obj\Debug\FilManager.Login.resources
+D:\GitHub Project\FilManager\FilManager\obj\Debug\FilManager.Register.resources

@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="userListDataSet" targetNamespace="http://tempuri.org/userListDataSet.xsd" xmlns:mstns="http://tempuri.org/userListDataSet.xsd" xmlns="http://tempuri.org/userListDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="userListConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="userListConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.FilManager.Properties.Settings.GlobalReference.Default.userListConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="UserUpdateTableAdapter" GeneratorDataComponentClassName="UserUpdateTableAdapter" Name="UserUpdate" UserDataComponentName="UserUpdateTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="userListConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText />
+                    <Parameters />
+                  </DbCommand>
+                </DeleteCommand>
+                <InsertCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText />
+                    <Parameters />
+                  </DbCommand>
+                </InsertCommand>
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT USER</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText />
+                    <Parameters />
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Column1" DataSetColumn="Column1" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="userListDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="userListDataSet" msprop:Generator_UserDSName="userListDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="USER" msprop:Generator_TableClassName="USERDataTable" msprop:Generator_TableVarName="tableUSER" msprop:Generator_TablePropName="USER" msprop:Generator_RowDeletingName="USERRowDeleting" msprop:Generator_RowChangingName="USERRowChanging" msprop:Generator_RowEvHandlerName="USERRowChangeEventHandler" msprop:Generator_RowDeletedName="USERRowDeleted" msprop:Generator_UserTableName="USER" msprop:Generator_RowChangedName="USERRowChanged" msprop:Generator_RowEvArgName="USERRowChangeEvent" msprop:Generator_RowClassName="USERRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:string" />
+              <xs:element name="EMAIL" msprop:Generator_ColumnVarNameInTable="columnEMAIL" msprop:Generator_ColumnPropNameInRow="EMAIL" msprop:Generator_ColumnPropNameInTable="EMAILColumn" msprop:Generator_UserColumnName="EMAIL" type="xs:string" minOccurs="0" />
+              <xs:element name="PASSWORD" msprop:Generator_ColumnVarNameInTable="columnPASSWORD" msprop:Generator_ColumnPropNameInRow="PASSWORD" msprop:Generator_ColumnPropNameInTable="PASSWORDColumn" msprop:Generator_UserColumnName="PASSWORD" type="xs:string" minOccurs="0" />
+              <xs:element name="DATE_REGISTER" msprop:Generator_ColumnVarNameInTable="columnDATE_REGISTER" msprop:Generator_ColumnPropNameInRow="DATE_REGISTER" msprop:Generator_ColumnPropNameInTable="DATE_REGISTERColumn" msprop:Generator_UserColumnName="DATE_REGISTER" type="xs:string" minOccurs="0" />
+              <xs:element name="DATE_LAST_LOGIN" msprop:Generator_ColumnVarNameInTable="columnDATE_LAST_LOGIN" msprop:Generator_ColumnPropNameInRow="DATE_LAST_LOGIN" msprop:Generator_ColumnPropNameInTable="DATE_LAST_LOGINColumn" msprop:Generator_UserColumnName="DATE_LAST_LOGIN" type="xs:string" minOccurs="0" />
+              <xs:element name="PASSWORD_RECOVERY" msprop:Generator_ColumnVarNameInTable="columnPASSWORD_RECOVERY" msprop:Generator_ColumnPropNameInRow="PASSWORD_RECOVERY" msprop:Generator_ColumnPropNameInTable="PASSWORD_RECOVERYColumn" msprop:Generator_UserColumnName="PASSWORD_RECOVERY" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="UserUpdate" msprop:Generator_TableClassName="UserUpdateDataTable" msprop:Generator_TableVarName="tableUserUpdate" msprop:Generator_TablePropName="UserUpdate" msprop:Generator_RowDeletingName="UserUpdateRowDeleting" msprop:Generator_RowChangingName="UserUpdateRowChanging" msprop:Generator_RowEvHandlerName="UserUpdateRowChangeEventHandler" msprop:Generator_RowDeletedName="UserUpdateRowDeleted" msprop:Generator_UserTableName="UserUpdate" msprop:Generator_RowChangedName="UserUpdateRowChanged" msprop:Generator_RowEvArgName="UserUpdateRowChangeEvent" msprop:Generator_RowClassName="UserUpdateRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Column1" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnColumn1" msprop:Generator_ColumnPropNameInRow="Column1" msprop:Generator_ColumnPropNameInTable="Column1Column" msprop:Generator_UserColumnName="Column1" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="128" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:USER" />
+      <xs:field xpath="mstns:ID" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>
