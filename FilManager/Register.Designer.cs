@@ -29,7 +29,6 @@ namespace FilManager
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.button_Register = new System.Windows.Forms.Button();
             this.label_Password = new System.Windows.Forms.Label();
             this.textBox_Password = new System.Windows.Forms.TextBox();
@@ -41,11 +40,12 @@ namespace FilManager
             this.textBox_ConfirmEmail = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.textBox_ConfirmPassword = new System.Windows.Forms.TextBox();
-            this.bindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.userListDataSet = new FilManager.userListDataSet();
-            this.tableAdapterManager = new FilManager.userListDataSetTableAdapters.TableAdapterManager();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.userListDataSet)).BeginInit();
+            this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.eMAILDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pASSWORDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dATEREGISTERDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dATELASTLOGINDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pASSWORDRECOVERYDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SuspendLayout();
             // 
             // button_Register
@@ -77,6 +77,7 @@ namespace FilManager
             this.textBox_Password.PasswordChar = '*';
             this.textBox_Password.Size = new System.Drawing.Size(321, 20);
             this.textBox_Password.TabIndex = 11;
+            this.textBox_Password.Text = "123456";
             this.textBox_Password.TextChanged += new System.EventHandler(this.textBox_Password_TextChanged);
             // 
             // label_Email
@@ -106,6 +107,7 @@ namespace FilManager
             this.textBox_Email.Name = "textBox_Email";
             this.textBox_Email.Size = new System.Drawing.Size(321, 20);
             this.textBox_Email.TabIndex = 8;
+            this.textBox_Email.Text = "da@y.com";
             this.textBox_Email.TextChanged += new System.EventHandler(this.textBox_Email_TextChanged);
             // 
             // label_Error
@@ -135,6 +137,7 @@ namespace FilManager
             this.textBox_ConfirmEmail.Name = "textBox_ConfirmEmail";
             this.textBox_ConfirmEmail.Size = new System.Drawing.Size(321, 20);
             this.textBox_ConfirmEmail.TabIndex = 15;
+            this.textBox_ConfirmEmail.Text = "da@y.com";
             this.textBox_ConfirmEmail.TextChanged += new System.EventHandler(this.textBox_ConfirmEmail_TextChanged);
             // 
             // label1
@@ -155,30 +158,38 @@ namespace FilManager
             this.textBox_ConfirmPassword.PasswordChar = '*';
             this.textBox_ConfirmPassword.Size = new System.Drawing.Size(321, 20);
             this.textBox_ConfirmPassword.TabIndex = 17;
+            this.textBox_ConfirmPassword.Text = "123456";
             this.textBox_ConfirmPassword.TextChanged += new System.EventHandler(this.textBox_ConfirmPassword_TextChanged);
             // 
-            // bindingSource
+            // iDDataGridViewTextBoxColumn
             // 
-            this.bindingSource.DataSource = this.userListDataSet;
-            this.bindingSource.Position = 0;
+            this.iDDataGridViewTextBoxColumn.Name = "iDDataGridViewTextBoxColumn";
             // 
-            // userListDataSet
+            // eMAILDataGridViewTextBoxColumn
             // 
-            this.userListDataSet.DataSetName = "userListDataSet";
-            this.userListDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            this.eMAILDataGridViewTextBoxColumn.Name = "eMAILDataGridViewTextBoxColumn";
             // 
-            // tableAdapterManager
+            // pASSWORDDataGridViewTextBoxColumn
             // 
-            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
-            this.tableAdapterManager.Connection = null;
-            this.tableAdapterManager.UpdateOrder = FilManager.userListDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
-            this.tableAdapterManager.UserUpdateTableAdapter = null;
+            this.pASSWORDDataGridViewTextBoxColumn.Name = "pASSWORDDataGridViewTextBoxColumn";
+            // 
+            // dATEREGISTERDataGridViewTextBoxColumn
+            // 
+            this.dATEREGISTERDataGridViewTextBoxColumn.Name = "dATEREGISTERDataGridViewTextBoxColumn";
+            // 
+            // dATELASTLOGINDataGridViewTextBoxColumn
+            // 
+            this.dATELASTLOGINDataGridViewTextBoxColumn.Name = "dATELASTLOGINDataGridViewTextBoxColumn";
+            // 
+            // pASSWORDRECOVERYDataGridViewTextBoxColumn
+            // 
+            this.pASSWORDRECOVERYDataGridViewTextBoxColumn.Name = "pASSWORDRECOVERYDataGridViewTextBoxColumn";
             // 
             // Register
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(513, 267);
+            this.ClientSize = new System.Drawing.Size(521, 264);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBox_ConfirmPassword);
             this.Controls.Add(this.label_ConfirmEmail);
@@ -190,13 +201,13 @@ namespace FilManager
             this.Controls.Add(this.label_Email);
             this.Controls.Add(this.label_Register);
             this.Controls.Add(this.textBox_Email);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Register";
             this.Text = "Register";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Register_FormClosing);
             this.Load += new System.EventHandler(this.Register_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.userListDataSet)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -215,8 +226,11 @@ namespace FilManager
         private System.Windows.Forms.TextBox textBox_ConfirmEmail;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBox_ConfirmPassword;
-        private System.Windows.Forms.BindingSource bindingSource;
-        private userListDataSet userListDataSet;
-        private userListDataSetTableAdapters.TableAdapterManager tableAdapterManager;
+        private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn eMAILDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn pASSWORDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dATEREGISTERDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dATELASTLOGINDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn pASSWORDRECOVERYDataGridViewTextBoxColumn;
     }
 }

@@ -29,6 +29,7 @@ namespace FilManager
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.textBox_Email = new System.Windows.Forms.TextBox();
             this.label_Login = new System.Windows.Forms.Label();
             this.label_Email = new System.Windows.Forms.Label();
@@ -37,9 +38,11 @@ namespace FilManager
             this.label_Error = new System.Windows.Forms.Label();
             this.button_Login = new System.Windows.Forms.Button();
             this.button_Register = new System.Windows.Forms.Button();
-            this.tableAdapterManager = new FilManager.userListDataSetTableAdapters.TableAdapterManager();
-            this.userListDataSet = new FilManager.userListDataSet();
-            ((System.ComponentModel.ISupportInitialize)(this.userListDataSet)).BeginInit();
+            this.bindingSource_Login = new System.Windows.Forms.BindingSource(this.components);
+            this.userListDataSet_Login = new FilManager.userListDataSet();
+            this.linkLabel_Recovery = new System.Windows.Forms.LinkLabel();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource_Login)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.userListDataSet_Login)).BeginInit();
             this.SuspendLayout();
             // 
             // textBox_Email
@@ -47,8 +50,9 @@ namespace FilManager
             this.textBox_Email.Location = new System.Drawing.Point(105, 62);
             this.textBox_Email.MaxLength = 100;
             this.textBox_Email.Name = "textBox_Email";
-            this.textBox_Email.Size = new System.Drawing.Size(217, 20);
+            this.textBox_Email.Size = new System.Drawing.Size(347, 20);
             this.textBox_Email.TabIndex = 0;
+            this.textBox_Email.Text = "da@y.com";
             this.textBox_Email.TextChanged += new System.EventHandler(this.textBox_Email_TextChanged);
             // 
             // label_Login
@@ -87,8 +91,9 @@ namespace FilManager
             this.textBox_Password.MaxLength = 100;
             this.textBox_Password.Name = "textBox_Password";
             this.textBox_Password.PasswordChar = '*';
-            this.textBox_Password.Size = new System.Drawing.Size(217, 20);
+            this.textBox_Password.Size = new System.Drawing.Size(347, 20);
             this.textBox_Password.TabIndex = 3;
+            this.textBox_Password.Text = "123456";
             this.textBox_Password.TextChanged += new System.EventHandler(this.textBox_Password_TextChanged);
             // 
             // label_Error
@@ -96,7 +101,7 @@ namespace FilManager
             this.label_Error.AutoSize = true;
             this.label_Error.Font = new System.Drawing.Font("Segoe UI", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
             this.label_Error.ForeColor = System.Drawing.Color.Red;
-            this.label_Error.Location = new System.Drawing.Point(10, 124);
+            this.label_Error.Location = new System.Drawing.Point(10, 155);
             this.label_Error.Name = "label_Error";
             this.label_Error.Size = new System.Drawing.Size(0, 17);
             this.label_Error.TabIndex = 5;
@@ -104,9 +109,9 @@ namespace FilManager
             // button_Login
             // 
             this.button_Login.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold);
-            this.button_Login.Location = new System.Drawing.Point(246, 147);
+            this.button_Login.Location = new System.Drawing.Point(365, 130);
             this.button_Login.Name = "button_Login";
-            this.button_Login.Size = new System.Drawing.Size(87, 43);
+            this.button_Login.Size = new System.Drawing.Size(87, 61);
             this.button_Login.TabIndex = 6;
             this.button_Login.Text = "Login";
             this.button_Login.UseVisualStyleBackColor = true;
@@ -115,31 +120,41 @@ namespace FilManager
             // button_Register
             // 
             this.button_Register.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
-            this.button_Register.Location = new System.Drawing.Point(142, 147);
+            this.button_Register.Location = new System.Drawing.Point(260, 130);
             this.button_Register.Name = "button_Register";
-            this.button_Register.Size = new System.Drawing.Size(99, 43);
+            this.button_Register.Size = new System.Drawing.Size(99, 61);
             this.button_Register.TabIndex = 7;
             this.button_Register.Text = "Register";
             this.button_Register.UseVisualStyleBackColor = true;
             this.button_Register.Click += new System.EventHandler(this.button_Register_Click);
             // 
-            // tableAdapterManager
+            // bindingSource_Login
             // 
-            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
-            this.tableAdapterManager.Connection = null;
-            this.tableAdapterManager.UpdateOrder = FilManager.userListDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
-            this.tableAdapterManager.UserUpdateTableAdapter = null;
+            this.bindingSource_Login.DataSource = this.userListDataSet_Login;
+            this.bindingSource_Login.Position = 0;
             // 
-            // userListDataSet
+            // userListDataSet_Login
             // 
-            this.userListDataSet.DataSetName = "userListDataSet";
-            this.userListDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            this.userListDataSet_Login.DataSetName = "userListDataSet";
+            this.userListDataSet_Login.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // linkLabel_Recovery
+            // 
+            this.linkLabel_Recovery.AutoSize = true;
+            this.linkLabel_Recovery.Location = new System.Drawing.Point(10, 130);
+            this.linkLabel_Recovery.Name = "linkLabel_Recovery";
+            this.linkLabel_Recovery.Size = new System.Drawing.Size(102, 13);
+            this.linkLabel_Recovery.TabIndex = 8;
+            this.linkLabel_Recovery.TabStop = true;
+            this.linkLabel_Recovery.Text = "Password Recovery";
+            this.linkLabel_Recovery.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel_Recovery_LinkClicked);
             // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(343, 201);
+            this.ClientSize = new System.Drawing.Size(464, 203);
+            this.Controls.Add(this.linkLabel_Recovery);
             this.Controls.Add(this.button_Register);
             this.Controls.Add(this.button_Login);
             this.Controls.Add(this.label_Error);
@@ -148,11 +163,16 @@ namespace FilManager
             this.Controls.Add(this.label_Email);
             this.Controls.Add(this.label_Login);
             this.Controls.Add(this.textBox_Email);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Login";
             this.Text = "Login";
-            ((System.ComponentModel.ISupportInitialize)(this.userListDataSet)).EndInit();
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Login_FormClosing);
+            this.Load += new System.EventHandler(this.Login_Load);
+            this.Enter += new System.EventHandler(this.Login_Enter);
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource_Login)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.userListDataSet_Login)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -167,8 +187,10 @@ namespace FilManager
         private System.Windows.Forms.Label label_Error;
         private System.Windows.Forms.Button button_Login;
         private System.Windows.Forms.Button button_Register;
-        private userListDataSetTableAdapters.TableAdapterManager tableAdapterManager;
         private userListDataSet userListDataSet;
+        private System.Windows.Forms.BindingSource bindingSource_Login;
+        private userListDataSet userListDataSet_Login;
+        private System.Windows.Forms.LinkLabel linkLabel_Recovery;
     }
 }
 
