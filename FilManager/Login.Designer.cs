@@ -41,6 +41,7 @@ namespace FilManager
             this.bindingSource_Login = new System.Windows.Forms.BindingSource(this.components);
             this.userListDataSet_Login = new FilManager.userListDataSet();
             this.linkLabel_Recovery = new System.Windows.Forms.LinkLabel();
+            this.checkBox_ShowPassword = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource_Login)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userListDataSet_Login)).BeginInit();
             this.SuspendLayout();
@@ -149,11 +150,23 @@ namespace FilManager
             this.linkLabel_Recovery.Text = "Password Recovery";
             this.linkLabel_Recovery.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel_Recovery_LinkClicked);
             // 
+            // checkBox_ShowPassword
+            // 
+            this.checkBox_ShowPassword.AutoSize = true;
+            this.checkBox_ShowPassword.Location = new System.Drawing.Point(118, 129);
+            this.checkBox_ShowPassword.Name = "checkBox_ShowPassword";
+            this.checkBox_ShowPassword.Size = new System.Drawing.Size(102, 17);
+            this.checkBox_ShowPassword.TabIndex = 9;
+            this.checkBox_ShowPassword.Text = "Show Password";
+            this.checkBox_ShowPassword.UseVisualStyleBackColor = true;
+            this.checkBox_ShowPassword.CheckedChanged += new System.EventHandler(this.checkBox_ShowPassword_CheckedChanged);
+            // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(464, 203);
+            this.Controls.Add(this.checkBox_ShowPassword);
             this.Controls.Add(this.linkLabel_Recovery);
             this.Controls.Add(this.button_Register);
             this.Controls.Add(this.button_Login);
@@ -191,6 +204,7 @@ namespace FilManager
         private System.Windows.Forms.BindingSource bindingSource_Login;
         private userListDataSet userListDataSet_Login;
         private System.Windows.Forms.LinkLabel linkLabel_Recovery;
+        private System.Windows.Forms.CheckBox checkBox_ShowPassword;
     }
 }
 

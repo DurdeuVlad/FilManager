@@ -143,6 +143,20 @@ namespace FilManager
         {
 
         }
+
+        private void checkBox_ShowPassword_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_ShowPassword.Checked)
+            {
+                textBox_Password.PasswordChar = (char)0;
+                textBox_ConfirmPassword.PasswordChar = (char)0;
+            }
+            else
+            {
+                textBox_Password.PasswordChar = '*';
+                textBox_ConfirmPassword.PasswordChar = '*';
+            }
+        }
     }
 }
 

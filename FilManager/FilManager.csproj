@@ -61,6 +61,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Account.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Account.Designer.cs">
+      <DependentUpon>Account.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Contact.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Contact.Designer.cs">
+      <DependentUpon>Contact.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DatabaseCommands.cs" />
     <Compile Include="EmailManager.cs" />
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
@@ -89,6 +102,7 @@
     <Compile Include="Register.Designer.cs">
       <DependentUpon>Register.cs</DependentUpon>
     </Compile>
+    <Compile Include="StructHolder.cs" />
     <Compile Include="userListDataSet.cs">
       <DependentUpon>userListDataSet.xsd</DependentUpon>
     </Compile>
@@ -97,6 +111,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>userListDataSet.xsd</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Account.resx">
+      <DependentUpon>Account.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Contact.resx">
+      <DependentUpon>Contact.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
@@ -111,6 +131,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="Recovery.resx">
       <DependentUpon>Recovery.cs</DependentUpon>
@@ -143,6 +164,8 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\img_87237.png" />
+    <None Include="Resources\41-410093_circled-user-icon-user-profile-icon-png.png" />
     <Content Include="userList.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

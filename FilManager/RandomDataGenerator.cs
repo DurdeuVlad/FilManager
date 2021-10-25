@@ -24,10 +24,10 @@ namespace FilManager
             return PasswordGenerator(NumberGenerator(10, 20));
         }
 
-        public static long NumberGenerator(long min, long max)
+        public static long NumberGenerator(int min, int max)
         {
             Random random = new Random(System.DateTime.Now.Millisecond);
-            return random.Next(10, 20);
+            return random.Next(min, max);
         }
     }
 }

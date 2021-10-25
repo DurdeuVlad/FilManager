@@ -46,6 +46,7 @@ namespace FilManager
             this.dATEREGISTERDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dATELASTLOGINDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pASSWORDRECOVERYDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.checkBox_ShowPassword = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // button_Register
@@ -115,7 +116,7 @@ namespace FilManager
             this.label_Error.AutoSize = true;
             this.label_Error.Font = new System.Drawing.Font("Segoe UI", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
             this.label_Error.ForeColor = System.Drawing.Color.Red;
-            this.label_Error.Location = new System.Drawing.Point(10, 185);
+            this.label_Error.Location = new System.Drawing.Point(10, 190);
             this.label_Error.Name = "label_Error";
             this.label_Error.Size = new System.Drawing.Size(0, 17);
             this.label_Error.TabIndex = 14;
@@ -185,11 +186,23 @@ namespace FilManager
             // 
             this.pASSWORDRECOVERYDataGridViewTextBoxColumn.Name = "pASSWORDRECOVERYDataGridViewTextBoxColumn";
             // 
+            // checkBox_ShowPassword
+            // 
+            this.checkBox_ShowPassword.AutoSize = true;
+            this.checkBox_ShowPassword.Location = new System.Drawing.Point(399, 181);
+            this.checkBox_ShowPassword.Name = "checkBox_ShowPassword";
+            this.checkBox_ShowPassword.Size = new System.Drawing.Size(102, 17);
+            this.checkBox_ShowPassword.TabIndex = 19;
+            this.checkBox_ShowPassword.Text = "Show Password";
+            this.checkBox_ShowPassword.UseVisualStyleBackColor = true;
+            this.checkBox_ShowPassword.CheckedChanged += new System.EventHandler(this.checkBox_ShowPassword_CheckedChanged);
+            // 
             // Register
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(521, 264);
+            this.Controls.Add(this.checkBox_ShowPassword);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBox_ConfirmPassword);
             this.Controls.Add(this.label_ConfirmEmail);
@@ -232,5 +245,6 @@ namespace FilManager
         private System.Windows.Forms.DataGridViewTextBoxColumn dATEREGISTERDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dATELASTLOGINDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn pASSWORDRECOVERYDataGridViewTextBoxColumn;
+        private System.Windows.Forms.CheckBox checkBox_ShowPassword;
     }
 }
