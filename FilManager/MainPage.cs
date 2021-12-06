@@ -145,5 +145,10 @@ namespace FilManager
             label_Title.Text = "PRINTERS";
             dataGridView_Main.DataSource = DatabaseCommands.ReturnDataTable("PRINTERS");
         }
+
+        private void button_add_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

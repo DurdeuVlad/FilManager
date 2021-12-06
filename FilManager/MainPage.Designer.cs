@@ -32,6 +32,8 @@ namespace FilManager
             this.button_Collapse = new System.Windows.Forms.Button();
             this.label_Menu = new System.Windows.Forms.Label();
             this.panel_MainMenu = new System.Windows.Forms.Panel();
+            this.button_FilamentRolls = new System.Windows.Forms.Button();
+            this.label_Meniu = new System.Windows.Forms.Label();
             this.button_Users = new System.Windows.Forms.Button();
             this.button_Close = new System.Windows.Forms.Button();
             this.button_Logout = new System.Windows.Forms.Button();
@@ -57,9 +59,8 @@ namespace FilManager
             this.label_NameUser = new System.Windows.Forms.Label();
             this.label_User = new System.Windows.Forms.Label();
             this.panel_main = new System.Windows.Forms.Panel();
-            this.label_Meniu = new System.Windows.Forms.Label();
-            this.button_FilamentRolls = new System.Windows.Forms.Button();
             this.dataGridView_Main = new System.Windows.Forms.DataGridView();
+            this.button_add = new System.Windows.Forms.Button();
             this.panel_MainMenu.SuspendLayout();
             this.panel_main.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Main)).BeginInit();
@@ -110,6 +111,32 @@ namespace FilManager
             this.panel_MainMenu.Name = "panel_MainMenu";
             this.panel_MainMenu.Size = new System.Drawing.Size(149, 697);
             this.panel_MainMenu.TabIndex = 2;
+            // 
+            // button_FilamentRolls
+            // 
+            this.button_FilamentRolls.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.button_FilamentRolls.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.button_FilamentRolls.Location = new System.Drawing.Point(6, 121);
+            this.button_FilamentRolls.Name = "button_FilamentRolls";
+            this.button_FilamentRolls.Size = new System.Drawing.Size(140, 34);
+            this.button_FilamentRolls.TabIndex = 28;
+            this.button_FilamentRolls.Text = "Filament Rolls";
+            this.button_FilamentRolls.UseVisualStyleBackColor = true;
+            this.button_FilamentRolls.Click += new System.EventHandler(this.button_FilamentRolls_Click);
+            // 
+            // label_Meniu
+            // 
+            this.label_Meniu.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label_Meniu.AutoSize = true;
+            this.label_Meniu.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label_Meniu.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.label_Meniu.Location = new System.Drawing.Point(14, 15);
+            this.label_Meniu.Name = "label_Meniu";
+            this.label_Meniu.Size = new System.Drawing.Size(116, 39);
+            this.label_Meniu.TabIndex = 27;
+            this.label_Meniu.Text = "Meniu";
+            this.label_Meniu.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // button_Users
             // 
@@ -380,6 +407,7 @@ namespace FilManager
             // panel_main
             // 
             this.panel_main.AutoSize = true;
+            this.panel_main.Controls.Add(this.button_add);
             this.panel_main.Controls.Add(this.dataGridView_Main);
             this.panel_main.Controls.Add(this.label_NameUser);
             this.panel_main.Controls.Add(this.button_Decolapse);
@@ -394,36 +422,11 @@ namespace FilManager
             this.panel_main.Controls.Add(this.label_Title);
             this.panel_main.Controls.Add(this.label_SelectedPrinter);
             this.panel_main.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel_main.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.panel_main.Location = new System.Drawing.Point(149, 0);
             this.panel_main.Name = "panel_main";
             this.panel_main.Size = new System.Drawing.Size(1084, 697);
             this.panel_main.TabIndex = 27;
-            // 
-            // label_Meniu
-            // 
-            this.label_Meniu.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label_Meniu.AutoSize = true;
-            this.label_Meniu.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label_Meniu.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.label_Meniu.Location = new System.Drawing.Point(14, 15);
-            this.label_Meniu.Name = "label_Meniu";
-            this.label_Meniu.Size = new System.Drawing.Size(116, 39);
-            this.label_Meniu.TabIndex = 27;
-            this.label_Meniu.Text = "Meniu";
-            this.label_Meniu.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // button_FilamentRolls
-            // 
-            this.button_FilamentRolls.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button_FilamentRolls.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button_FilamentRolls.Location = new System.Drawing.Point(6, 121);
-            this.button_FilamentRolls.Name = "button_FilamentRolls";
-            this.button_FilamentRolls.Size = new System.Drawing.Size(140, 34);
-            this.button_FilamentRolls.TabIndex = 28;
-            this.button_FilamentRolls.Text = "Filament Rolls";
-            this.button_FilamentRolls.UseVisualStyleBackColor = true;
-            this.button_FilamentRolls.Click += new System.EventHandler(this.button_FilamentRolls_Click);
             // 
             // dataGridView_Main
             // 
@@ -438,8 +441,21 @@ namespace FilManager
             this.dataGridView_Main.MultiSelect = false;
             this.dataGridView_Main.Name = "dataGridView_Main";
             this.dataGridView_Main.ReadOnly = true;
-            this.dataGridView_Main.Size = new System.Drawing.Size(1066, 496);
+            this.dataGridView_Main.Size = new System.Drawing.Size(1066, 443);
             this.dataGridView_Main.TabIndex = 28;
+            // 
+            // button_add
+            // 
+            this.button_add.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.button_add.DialogResult = System.Windows.Forms.DialogResult.No;
+            this.button_add.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.button_add.Location = new System.Drawing.Point(857, 635);
+            this.button_add.Name = "button_add";
+            this.button_add.Size = new System.Drawing.Size(215, 50);
+            this.button_add.TabIndex = 29;
+            this.button_add.Text = "Add New";
+            this.button_add.UseVisualStyleBackColor = true;
+            this.button_add.Click += new System.EventHandler(this.button_add_Click);
             // 
             // MainPage
             // 
@@ -495,5 +511,6 @@ namespace FilManager
         private System.Windows.Forms.Label label_Meniu;
         private System.Windows.Forms.Button button_FilamentRolls;
         private System.Windows.Forms.DataGridView dataGridView_Main;
+        private System.Windows.Forms.Button button_add;
     }
 }
