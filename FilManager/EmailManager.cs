@@ -16,16 +16,24 @@ namespace FilManager
         /// <param name="email"></param>
         /// <param name="subject"></param>
         /// <param name="body"></param>
-        public static void sendEmail(string email, string subject, string body)
+        public static bool sendEmail(string email, string subject, string body)
         {
             SmtpClient smtpClient = new SmtpClient("smtp.gmail.com")
             {
+                UseDefaultCredentials = false,
                 Port = 587,
                 Credentials = new NetworkCredential("fil.manager.app@gmail.com",       "thebestapp!"),
                 EnableSsl = true,
             };
-
-            smtpClient.Send("fil.manager.app@gmail.com", email, subject, body);
+            try
+            {
+                smtpClient.Send("fil.manager.app@gmail.com", email, subject, body);
+                return true;
+            }
+            catch(Exception e)
+            {
+                return false;
+            }
         }
     }
 }

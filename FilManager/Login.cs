@@ -62,6 +62,8 @@ namespace FilManager
                         {
                             UpdateLoginData(sqlDataAdapter, i);
                             _MainPage.LoginEmail = textBox_Email.Text;
+                            _MainPage.Password = textBox_Password.Text;
+                            _MainPage.UserId = i;
                             this.Close();
                         }
                     }
@@ -86,7 +88,8 @@ namespace FilManager
                             "\n " +
                             "We wish you all the best,\nFilManager Team");
                     
-                    _MainPage.LoginEmail = textBox_Email.Text;
+                        _MainPage.LoginEmail = textBox_Email.Text;
+                        _MainPage.Password = textBox_Password.Text;
                         this.Close();
                     }
                     else

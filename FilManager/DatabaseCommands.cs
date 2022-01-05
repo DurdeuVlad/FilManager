@@ -35,6 +35,60 @@ namespace FilManager
             return exist;
         }
 
+        public static bool ExistsEmail(string email, out int row)
+        {
+            DataTable data;
+            bool exist = false;
+            row = -1;
+            SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\GitHub Project\FilManager\FilManager\userList.mdf;Integrated Security=True;Connect Timeout=30");
+            data = new DataTable();
+            connection.Open();
+            SqlCommand sqlCommand = new SqlCommand("SELECT * FROM dbo.[Table]", connection);
+            SqlDataAdapter sqlDataAdapter = new SqlDataAdapter();
+            sqlDataAdapter.SelectCommand = sqlCommand;
+            sqlDataAdapter.Fill(data);
+            for (int i = 0; i < data.Rows.Count; i++)
+            {
+                string currentEmail = data.Rows[i][1].ToString();
+                if (currentEmail.Equals(email))
+                {
+                    row = i;
+                    exist = true;
+                    break;
+                }
+            }
+            connection.Close();
+            return exist;
+        }
+
+        public static bool ExistsUser(string email, string password, out string userid)
+        {
+            bool exist = false;
+            userid = "-1";
+            SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\GitHub Project\FilManager\FilManager\userList.mdf;Integrated Security=True;Connect Timeout=30");
+            DataTable data = new DataTable();
+            connection.Open();
+            SqlCommand sqlCommand = new SqlCommand("SELECT * FROM dbo.[Table]", connection);
+            SqlDataAdapter sqlDataAdapter = new SqlDataAdapter();
+            sqlDataAdapter.SelectCommand = sqlCommand;
+            sqlDataAdapter.Fill(data);
+            for (int i = 0; i < data.Rows.Count; i++)
+            {
+                string currentEmail = data.Rows[i][1].ToString();
+                if (currentEmail.Equals(email))
+                {
+                    if (data.Rows[i][2].ToString().Equals(password) || data.Rows[i][5].ToString().Equals(password))
+                    {
+                        userid = i.ToString();
+                        exist = true;
+                        break;
+                    }
+                }
+            }
+            connection.Close();
+            return exist;
+        }
+
         /// <summary>
         /// 
         /// </summary>

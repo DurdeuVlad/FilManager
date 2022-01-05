@@ -59,8 +59,9 @@ namespace FilManager
             this.label_NameUser = new System.Windows.Forms.Label();
             this.label_User = new System.Windows.Forms.Label();
             this.panel_main = new System.Windows.Forms.Panel();
-            this.dataGridView_Main = new System.Windows.Forms.DataGridView();
+            this.listBox1 = new System.Windows.Forms.ListBox();
             this.button_add = new System.Windows.Forms.Button();
+            this.dataGridView_Main = new System.Windows.Forms.DataGridView();
             this.panel_MainMenu.SuspendLayout();
             this.panel_main.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Main)).BeginInit();
@@ -142,12 +143,13 @@ namespace FilManager
             // 
             this.button_Users.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.button_Users.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button_Users.Location = new System.Drawing.Point(6, 281);
+            this.button_Users.Location = new System.Drawing.Point(6, 321);
             this.button_Users.Name = "button_Users";
             this.button_Users.Size = new System.Drawing.Size(140, 34);
             this.button_Users.TabIndex = 14;
             this.button_Users.Text = "Users";
             this.button_Users.UseVisualStyleBackColor = true;
+            this.button_Users.Visible = false;
             this.button_Users.Click += new System.EventHandler(this.button_Users_Click);
             // 
             // button_Close
@@ -226,7 +228,7 @@ namespace FilManager
             // 
             this.button_Reports.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.button_Reports.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button_Reports.Location = new System.Drawing.Point(6, 321);
+            this.button_Reports.Location = new System.Drawing.Point(6, 281);
             this.button_Reports.Name = "button_Reports";
             this.button_Reports.Size = new System.Drawing.Size(140, 34);
             this.button_Reports.TabIndex = 7;
@@ -393,6 +395,7 @@ namespace FilManager
             this.label_NameUser.Size = new System.Drawing.Size(95, 20);
             this.label_NameUser.TabIndex = 26;
             this.label_NameUser.Text = "Name user";
+            this.label_NameUser.Visible = false;
             // 
             // label_User
             // 
@@ -403,10 +406,12 @@ namespace FilManager
             this.label_User.Size = new System.Drawing.Size(110, 20);
             this.label_User.TabIndex = 25;
             this.label_User.Text = "Selected User";
+            this.label_User.Visible = false;
             // 
             // panel_main
             // 
             this.panel_main.AutoSize = true;
+            this.panel_main.Controls.Add(this.listBox1);
             this.panel_main.Controls.Add(this.button_add);
             this.panel_main.Controls.Add(this.dataGridView_Main);
             this.panel_main.Controls.Add(this.label_NameUser);
@@ -428,21 +433,18 @@ namespace FilManager
             this.panel_main.Size = new System.Drawing.Size(1084, 697);
             this.panel_main.TabIndex = 27;
             // 
-            // dataGridView_Main
+            // listBox1
             // 
-            this.dataGridView_Main.AllowUserToAddRows = false;
-            this.dataGridView_Main.AllowUserToDeleteRows = false;
-            this.dataGridView_Main.AllowUserToOrderColumns = true;
-            this.dataGridView_Main.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridView_Main.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
-            this.dataGridView_Main.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView_Main.Location = new System.Drawing.Point(6, 161);
-            this.dataGridView_Main.MultiSelect = false;
-            this.dataGridView_Main.Name = "dataGridView_Main";
-            this.dataGridView_Main.ReadOnly = true;
-            this.dataGridView_Main.Size = new System.Drawing.Size(1066, 443);
-            this.dataGridView_Main.TabIndex = 28;
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.ItemHeight = 33;
+            this.listBox1.Items.AddRange(new object[] {
+            "dadsasdasd",
+            "dsadasasd"});
+            this.listBox1.Location = new System.Drawing.Point(18, 321);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(1054, 301);
+            this.listBox1.TabIndex = 30;
+            this.listBox1.Visible = false;
             // 
             // button_add
             // 
@@ -456,6 +458,22 @@ namespace FilManager
             this.button_add.Text = "Add New";
             this.button_add.UseVisualStyleBackColor = true;
             this.button_add.Click += new System.EventHandler(this.button_add_Click);
+            // 
+            // dataGridView_Main
+            // 
+            this.dataGridView_Main.AllowUserToAddRows = false;
+            this.dataGridView_Main.AllowUserToDeleteRows = false;
+            this.dataGridView_Main.AllowUserToOrderColumns = true;
+            this.dataGridView_Main.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView_Main.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
+            this.dataGridView_Main.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView_Main.Location = new System.Drawing.Point(18, 161);
+            this.dataGridView_Main.MultiSelect = false;
+            this.dataGridView_Main.Name = "dataGridView_Main";
+            this.dataGridView_Main.ReadOnly = true;
+            this.dataGridView_Main.Size = new System.Drawing.Size(1054, 419);
+            this.dataGridView_Main.TabIndex = 28;
             // 
             // MainPage
             // 
@@ -512,5 +530,6 @@ namespace FilManager
         private System.Windows.Forms.Button button_FilamentRolls;
         private System.Windows.Forms.DataGridView dataGridView_Main;
         private System.Windows.Forms.Button button_add;
+        private System.Windows.Forms.ListBox listBox1;
     }
 }

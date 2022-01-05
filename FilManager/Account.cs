@@ -14,6 +14,7 @@ namespace FilManager
     public partial class Account : Form
     {
         public string currentEmail;
+        public string currentPassword;
         SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\GitHub Project\FilManager\FilManager\userList.mdf;Integrated Security=True;Connect Timeout=30");
         DataTable data = new DataTable();
         public Account()
@@ -28,14 +29,15 @@ namespace FilManager
             //
             //sqlDataAdapter.SelectCommand = sqlCommand; 
             //sqlDataAdapter.Fill(data);
+            int userid = -1;
 
+            DatabaseCommands.ExistsEmail(currentEmail, out userid);
             int i = 0;
             if (DatabaseCommands.ExistsEmail(currentEmail, out data, out i))
             {
                 label_JoinDate.Text = data.Rows[i][3].ToString();
                 label_LastLogin.Text = data.Rows[i][4].ToString();
-                label_Name.Text = data.Rows[i][1].ToString().Substring(0,
-                data.Rows[i][1].ToString().IndexOf('@'));
+                label_Name.Text = data.Rows[i][1].ToString().Substring(0, data.Rows[i][1].ToString().IndexOf('@'));
             }
             
         }

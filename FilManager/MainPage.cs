@@ -20,16 +20,21 @@ namespace FilManager
         
 
         public string LoginEmail;
-        bool NoEmail => LoginEmail == null;
+        public string Password;
+        public int UserId;
+        bool NoEmail => LoginEmail == null && Password == null;
+        //bool NoValidUser => DatabaseCommands.ExistsEmail(LoginEmail, out UserId);
         public MainPage()
         {
             InitializeComponent();
+            
             SelectedPrinter.Select(0, "-", label_NamePrinter);
             SelectedFilament.Select(0, "-", label_NameFilament);
             SelectedClient.Select(0, "-", label_NameClient);
             SelectedCommand.Select(0, "-", label_NameCommand);
             SelectedUser.Select(0, "-", label_NameUser);
             button_Decolapse.Visible = false;
+
         }
 
         private void MainPage_Load(object sender, EventArgs e)
@@ -70,6 +75,7 @@ namespace FilManager
         void CheckIfLogged()
         {
             LoginEmail = null;
+            
             if (NoEmail)
             {
                 Login login = new Login();
@@ -80,6 +86,8 @@ namespace FilManager
             {
                 this.Close();
             }
+            label_Title.Text = UserId.ToString();
+
         }
 
         private void button_Feedback_Click(object sender, EventArgs e)
@@ -100,6 +108,7 @@ namespace FilManager
         {
             Account account = new Account();
             account.currentEmail = LoginEmail;
+            account.currentPassword = Password;
             account.ShowDialog();
         }
 
@@ -112,7 +121,14 @@ namespace FilManager
         {
             label_Title.Text = "FILAMENT ROLLS";
             dataGridView_Main.DataSource = DatabaseCommands.ReturnDataTable("FILAMENT_ROLLS");
-     
+            foreach (DataGridViewRow aux in dataGridView_Main.Rows) {
+                if(!aux.Cells[dataGridView_Main.Columns.Count-1].Value.Equals(UserId.ToString()))
+                {
+                    dataGridView_Main.Rows.Remove(aux);
+
+                }
+            }
+            //dataGridView_Main.Columns.RemoveAt(dataGridView_Main.Columns.Count - 1);
         }
 
         private void button_Prints_Click(object sender, EventArgs e)
@@ -126,24 +142,28 @@ namespace FilManager
         {
             label_Title.Text = "CLIENTS";
             dataGridView_Main.DataSource = DatabaseCommands.ReturnDataTable("CLIENTS");
+            dataGridView_Main.Columns.RemoveAt(dataGridView_Main.Columns.Count - 1);
         }
 
         private void button_Commands_Click(object sender, EventArgs e)
         {
             label_Title.Text = "COMMANDS";
             dataGridView_Main.DataSource = DatabaseCommands.ReturnDataTable("COMMANDS");
+            dataGridView_Main.Columns.RemoveAt(dataGridView_Main.Columns.Count - 1);
         }
 
         private void button_Users_Click(object sender, EventArgs e)
         {
             label_Title.Text = "USERS";
             dataGridView_Main.DataSource = DatabaseCommands.ReturnDataTable("LOCAL_USER");
+            dataGridView_Main.Columns.RemoveAt(dataGridView_Main.Columns.Count - 1);
         }
 
         private void button_Printers_Click(object sender, EventArgs e)
         {
             label_Title.Text = "PRINTERS";
             dataGridView_Main.DataSource = DatabaseCommands.ReturnDataTable("PRINTERS");
+            dataGridView_Main.Columns.RemoveAt(dataGridView_Main.Columns.Count-1);
         }
 
         private void button_add_Click(object sender, EventArgs e)
