@@ -16,3 +16,4 @@ D:\GitHub Project\FilManager\FilManager\obj\Debug\FilManager.Recovery.resources
 D:\GitHub Project\FilManager\FilManager\obj\Debug\FilManager.Contact.resources
 D:\GitHub Project\FilManager\FilManager\obj\Debug\FilManager.Account.resources
 D:\GitHub Project\FilManager\FilManager\obj\Debug\FilManager.AddDialog.resources
+D:\GitHub Project\FilManager\FilManager\obj\Debug\FilManager.AddDialog_FilamentRolls.resources

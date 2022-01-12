@@ -29,6 +29,7 @@ namespace FilManager
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.button_Collapse = new System.Windows.Forms.Button();
             this.label_Menu = new System.Windows.Forms.Label();
             this.panel_MainMenu = new System.Windows.Forms.Panel();
@@ -50,16 +51,15 @@ namespace FilManager
             this.label_SelectedPrinter = new System.Windows.Forms.Label();
             this.label_Title = new System.Windows.Forms.Label();
             this.label_SelectedFilament = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.label_SelectedClient = new System.Windows.Forms.Label();
             this.label_NamePrinter = new System.Windows.Forms.Label();
             this.label_NameFilament = new System.Windows.Forms.Label();
             this.label_NameClient = new System.Windows.Forms.Label();
             this.label_NameCommand = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.label_SelectedCommand = new System.Windows.Forms.Label();
             this.label_NameUser = new System.Windows.Forms.Label();
-            this.label_User = new System.Windows.Forms.Label();
+            this.label_SelectedUser = new System.Windows.Forms.Label();
             this.panel_main = new System.Windows.Forms.Panel();
-            this.listBox1 = new System.Windows.Forms.ListBox();
             this.button_add = new System.Windows.Forms.Button();
             this.dataGridView_Main = new System.Windows.Forms.DataGridView();
             this.panel_MainMenu.SuspendLayout();
@@ -285,6 +285,7 @@ namespace FilManager
             // 
             // button_Decolapse
             // 
+            this.button_Decolapse.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.button_Decolapse.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.button_Decolapse.Location = new System.Drawing.Point(3, 666);
             this.button_Decolapse.Name = "button_Decolapse";
@@ -314,7 +315,7 @@ namespace FilManager
             this.label_Title.Size = new System.Drawing.Size(88, 39);
             this.label_Title.TabIndex = 17;
             this.label_Title.Text = "Title";
-            this.label_Title.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.label_Title.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label_SelectedFilament
             // 
@@ -326,15 +327,15 @@ namespace FilManager
             this.label_SelectedFilament.TabIndex = 18;
             this.label_SelectedFilament.Text = "Selected Filament";
             // 
-            // label2
+            // label_SelectedClient
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label2.Location = new System.Drawing.Point(1, 64);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(116, 20);
-            this.label2.TabIndex = 19;
-            this.label2.Text = "Selected Client";
+            this.label_SelectedClient.AutoSize = true;
+            this.label_SelectedClient.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label_SelectedClient.Location = new System.Drawing.Point(1, 64);
+            this.label_SelectedClient.Name = "label_SelectedClient";
+            this.label_SelectedClient.Size = new System.Drawing.Size(116, 20);
+            this.label_SelectedClient.TabIndex = 19;
+            this.label_SelectedClient.Text = "Selected Client";
             // 
             // label_NamePrinter
             // 
@@ -376,15 +377,15 @@ namespace FilManager
             this.label_NameCommand.TabIndex = 24;
             this.label_NameCommand.Text = "Name command";
             // 
-            // label3
+            // label_SelectedCommand
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label3.Location = new System.Drawing.Point(1, 94);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(149, 20);
-            this.label3.TabIndex = 23;
-            this.label3.Text = "Selected Command";
+            this.label_SelectedCommand.AutoSize = true;
+            this.label_SelectedCommand.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label_SelectedCommand.Location = new System.Drawing.Point(1, 94);
+            this.label_SelectedCommand.Name = "label_SelectedCommand";
+            this.label_SelectedCommand.Size = new System.Drawing.Size(149, 20);
+            this.label_SelectedCommand.TabIndex = 23;
+            this.label_SelectedCommand.Text = "Selected Command";
             // 
             // label_NameUser
             // 
@@ -397,61 +398,50 @@ namespace FilManager
             this.label_NameUser.Text = "Name user";
             this.label_NameUser.Visible = false;
             // 
-            // label_User
+            // label_SelectedUser
             // 
-            this.label_User.AutoSize = true;
-            this.label_User.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label_User.Location = new System.Drawing.Point(1, 125);
-            this.label_User.Name = "label_User";
-            this.label_User.Size = new System.Drawing.Size(110, 20);
-            this.label_User.TabIndex = 25;
-            this.label_User.Text = "Selected User";
-            this.label_User.Visible = false;
+            this.label_SelectedUser.AutoSize = true;
+            this.label_SelectedUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label_SelectedUser.Location = new System.Drawing.Point(1, 125);
+            this.label_SelectedUser.Name = "label_SelectedUser";
+            this.label_SelectedUser.Size = new System.Drawing.Size(110, 20);
+            this.label_SelectedUser.TabIndex = 25;
+            this.label_SelectedUser.Text = "Selected User";
+            this.label_SelectedUser.Visible = false;
             // 
             // panel_main
             // 
+            this.panel_main.AutoScroll = true;
             this.panel_main.AutoSize = true;
-            this.panel_main.Controls.Add(this.listBox1);
+            this.panel_main.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.panel_main.Controls.Add(this.button_add);
             this.panel_main.Controls.Add(this.dataGridView_Main);
             this.panel_main.Controls.Add(this.label_NameUser);
             this.panel_main.Controls.Add(this.button_Decolapse);
-            this.panel_main.Controls.Add(this.label_User);
+            this.panel_main.Controls.Add(this.label_SelectedUser);
             this.panel_main.Controls.Add(this.label_NameCommand);
-            this.panel_main.Controls.Add(this.label3);
+            this.panel_main.Controls.Add(this.label_SelectedCommand);
             this.panel_main.Controls.Add(this.label_NameClient);
             this.panel_main.Controls.Add(this.label_NameFilament);
             this.panel_main.Controls.Add(this.label_NamePrinter);
-            this.panel_main.Controls.Add(this.label2);
+            this.panel_main.Controls.Add(this.label_SelectedClient);
             this.panel_main.Controls.Add(this.label_SelectedFilament);
             this.panel_main.Controls.Add(this.label_Title);
             this.panel_main.Controls.Add(this.label_SelectedPrinter);
             this.panel_main.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel_main.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.panel_main.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.panel_main.Location = new System.Drawing.Point(149, 0);
             this.panel_main.Name = "panel_main";
-            this.panel_main.Size = new System.Drawing.Size(1084, 697);
+            this.panel_main.Size = new System.Drawing.Size(1151, 697);
             this.panel_main.TabIndex = 27;
-            // 
-            // listBox1
-            // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 33;
-            this.listBox1.Items.AddRange(new object[] {
-            "dadsasdasd",
-            "dsadasasd"});
-            this.listBox1.Location = new System.Drawing.Point(18, 321);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(1054, 301);
-            this.listBox1.TabIndex = 30;
-            this.listBox1.Visible = false;
             // 
             // button_add
             // 
+            this.button_add.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.button_add.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.button_add.DialogResult = System.Windows.Forms.DialogResult.No;
             this.button_add.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button_add.Location = new System.Drawing.Point(857, 635);
+            this.button_add.Location = new System.Drawing.Point(924, 71);
             this.button_add.Name = "button_add";
             this.button_add.Size = new System.Drawing.Size(215, 50);
             this.button_add.TabIndex = 29;
@@ -464,22 +454,26 @@ namespace FilManager
             this.dataGridView_Main.AllowUserToAddRows = false;
             this.dataGridView_Main.AllowUserToDeleteRows = false;
             this.dataGridView_Main.AllowUserToOrderColumns = true;
-            this.dataGridView_Main.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.dataGridView_Main.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView_Main.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
+            this.dataGridView_Main.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridView_Main.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView_Main.Location = new System.Drawing.Point(18, 161);
+            this.dataGridView_Main.Location = new System.Drawing.Point(5, 127);
             this.dataGridView_Main.MultiSelect = false;
             this.dataGridView_Main.Name = "dataGridView_Main";
             this.dataGridView_Main.ReadOnly = true;
-            this.dataGridView_Main.Size = new System.Drawing.Size(1054, 419);
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridView_Main.RowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.dataGridView_Main.Size = new System.Drawing.Size(1132, 536);
             this.dataGridView_Main.TabIndex = 28;
             // 
             // MainPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1233, 697);
+            this.ClientSize = new System.Drawing.Size(1300, 697);
             this.Controls.Add(this.panel_main);
             this.Controls.Add(this.panel_MainMenu);
             this.Name = "MainPage";
@@ -516,20 +510,19 @@ namespace FilManager
         private System.Windows.Forms.Label label_SelectedPrinter;
         private System.Windows.Forms.Label label_Title;
         private System.Windows.Forms.Label label_SelectedFilament;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label_SelectedClient;
         private System.Windows.Forms.Label label_NamePrinter;
         private System.Windows.Forms.Label label_NameFilament;
         private System.Windows.Forms.Label label_NameClient;
         private System.Windows.Forms.Label label_NameCommand;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label_SelectedCommand;
         private System.Windows.Forms.Button button_Users;
         private System.Windows.Forms.Label label_NameUser;
-        private System.Windows.Forms.Label label_User;
+        private System.Windows.Forms.Label label_SelectedUser;
         private System.Windows.Forms.Panel panel_main;
         private System.Windows.Forms.Label label_Meniu;
         private System.Windows.Forms.Button button_FilamentRolls;
         private System.Windows.Forms.DataGridView dataGridView_Main;
         private System.Windows.Forms.Button button_add;
-        private System.Windows.Forms.ListBox listBox1;
     }
 }

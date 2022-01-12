@@ -10,6 +10,14 @@ namespace FilManager
 {
     class DatabaseCommands
     {
+        /// <summary>
+        /// Clasa asta verifica daca exista emailul si returneaza true daca exista,
+        /// DataTableul unde a cautat datele si linia unde l-a gasit
+        /// </summary>
+        /// <param name="email"></param>
+        /// <param name="password"></param>
+        /// <param name="userid"></param>
+        /// <returns></returns>
         public static bool ExistsEmail(string email, out DataTable data, out int row)
         {
             bool exist = false;
@@ -35,6 +43,13 @@ namespace FilManager
             return exist;
         }
 
+        /// <summary>
+        /// Clasa asta verifica daca exista emailul si returneaza true daca exista si linia unde l-a gasit
+        /// </summary>
+        /// <param name="email"></param>
+        /// <param name="password"></param>
+        /// <param name="userid"></param>
+        /// <returns></returns>
         public static bool ExistsEmail(string email, out int row)
         {
             DataTable data;
@@ -61,6 +76,16 @@ namespace FilManager
             return exist;
         }
 
+
+
+        /// <summary>
+        /// Clasa asta verifica daca exista userul si returneaza true daca exista si userid-ul gasit
+        /// </summary>
+        /// <param name="email"></param>
+        /// <param name="password"></param>
+        /// <param name="userid"></param>
+        /// <returns></returns>
+        [Obsolete("Does not work, needs fixing")]
         public static bool ExistsUser(string email, string password, out string userid)
         {
             bool exist = false;
@@ -90,7 +115,7 @@ namespace FilManager
         }
 
         /// <summary>
-        /// 
+        /// returneaza DataTable cu numele dat
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>

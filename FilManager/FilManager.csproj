@@ -81,6 +81,12 @@
     </Compile>
     <Compile Include="DatabaseCommands.cs" />
     <Compile Include="EmailManager.cs" />
+    <Compile Include="AddDialog_FilamentRolls.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddDialog_FilamentRolls.Designer.cs">
+      <DependentUpon>AddDialog_FilamentRolls.cs</DependentUpon>
+    </Compile>
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -122,6 +128,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AddDialog.resx">
       <DependentUpon>AddDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddDialog_FilamentRolls.resx">
+      <DependentUpon>AddDialog_FilamentRolls.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Contact.resx">
       <DependentUpon>Contact.cs</DependentUpon>
