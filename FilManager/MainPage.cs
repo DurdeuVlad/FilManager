@@ -17,8 +17,8 @@ namespace FilManager
         StructHolder.SelectedItem SelectedClient;
         StructHolder.SelectedItem SelectedCommand;
         StructHolder.SelectedItem SelectedUser;
-        
 
+        string Selected = "";
         public string LoginEmail;
         public string Password;
         public int UserId;
@@ -30,6 +30,11 @@ namespace FilManager
             
             
 
+        }
+        
+        public void SetSelected(string newTitle)
+        {
+            Selected = newTitle;
         }
 
         private void MainPage_Load(object sender, EventArgs e)
@@ -160,11 +165,18 @@ namespace FilManager
 
         private void button_add_Click(object sender, EventArgs e)
         {
-            AddDialog_FilamentRolls addDialog_FilamentRolls = new AddDialog_FilamentRolls();
-            addDialog_FilamentRolls.userId = UserId;
-            addDialog_FilamentRolls.ShowDialog();
-        }
+            switch (Selected) { 
+            case "FILAMENT ROLLS":
+                AddDialog_FilamentRolls addDialog_FilamentRolls = new AddDialog_FilamentRolls();
+                addDialog_FilamentRolls.userId = UserId;
+                addDialog_FilamentRolls.ShowDialog();
+                break;
+            }
 
+        }
+        /// <summary>
+        /// Clears selected highlights
+        /// </summary>
         void ClearSelected()
         {
             List<Label> nameLabels = new List<Label>();
@@ -194,21 +206,33 @@ namespace FilManager
             }
 
         }
-
+        /// <summary>
+        /// Shows what variables are needed
+        /// </summary>
+        /// <param name="Name"></param>
         void ShowNeeded(string Name)
         {
             Color color = Color.Black;
             FontStyle fontStyle = FontStyle.Regular;
             Show(Name, color, fontStyle);
         }
-
+        /// <summary>
+        /// Shows what variables is selected
+        /// </summary>
+        /// <param name="Name"></param>
         void ShowSelected(string Name)
         {
             Color color = Color.Green;
             FontStyle fontStyle = FontStyle.Bold;
             Show(Name, color, fontStyle);
+            SetSelected(Name);
         }
-
+        /// <summary>
+        /// Highlight what variables are in use
+        /// </summary>
+        /// <param name="Name"></param>
+        /// <param name="color"></param>
+        /// <param name="fontStyle"></param>
         void Show(string Name, Color color, FontStyle fontStyle)
         {
             switch (Name)
@@ -245,12 +269,19 @@ namespace FilManager
                     break;
             }
         }
-
+        /// <summary>
+        /// Shows data if the sql table name is the same as the title shown to the user
+        /// </summary>
+        /// <param name="TableName"></param>
         void ShowData(string TableName)
         {
             ShowData(TableName, TableName);
         }
-
+        /// <summary>
+        /// Shows data to the user
+        /// </summary>
+        /// <param name="TableName">What sql table we acces</param>
+        /// <param name="Title">What we show to the user</param>
         void ShowData(string TableName, string Title)
         {
             label_Title.Text = Title;
@@ -285,53 +316,7 @@ namespace FilManager
             //fill dataGridView with data
             dataGridView_Main.DataSource = dataTableFinal;
 
-            //add items to listBox_Main, not in use anymore
-            /*
-            //clear list
-            //listBox_Main.Items.Clear();
-            //remember the number of character each title has, it will be important later
-            List<int> letters = new List<int>();
-
-            //fill listBox_Main with data, row by row
-            object dataRow = "";
-            foreach (object Object in dataTableFinal.Columns)
-            {
-                string aux = Object.ToString().Replace(" ", "") + "    ";
-                letters.Add(aux.Length);
-                dataRow += aux;
-            }
-
-            
-            listBox_Main.Items.Add(dataRow);
-
-            foreach (DataRow dataGrid in dataTableFinal.Rows)
-            {
-                dataRow = "";
-                int columns = 0;
-                foreach (object Object in dataGrid.ItemArray)
-                {
-                    // we will add half the remaining spaces to the left and half to the right
-                    int total = letters[columns];
-                    string aux = Object.ToString().Replace(" ", "");
-                    total -= aux.Length+1;
-                    int right = ((int) total / 2) - 2;
-                    int left = ((int) total / 2);
-                    left += total % 2;
-                    
-                    for(int i=1; i<= right; i++)
-                    {
-                        aux = "p" + aux;
-                    }
-                    for (int i = 1; i <= left; i++)
-                    {
-                        aux += "o";
-                    }
-                    dataRow += aux + " ";
-                    columns++;
-                }
-                //listBox_Main.Items.Add(dataRow);
-            }
-            */
+           
 
         }
     }

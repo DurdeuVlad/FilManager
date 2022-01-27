@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,6 +11,9 @@ namespace FilManager
 {
     class DatabaseCommands
     {
+
+        public static string sqlConnection = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" + Directory.GetCurrentDirectory() + "\\userList.mdf;Integrated Security=True;Connect Timeout=30";
+        //@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\GitHub Project\FilManager\FilManager\userList.mdf;Integrated Security=True;Connect Timeout=30
         /// <summary>
         /// Clasa asta verifica daca exista emailul si returneaza true daca exista,
         /// DataTableul unde a cautat datele si linia unde l-a gasit
@@ -22,7 +26,7 @@ namespace FilManager
         {
             bool exist = false;
             row = 0;
-            SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\GitHub Project\FilManager\FilManager\userList.mdf;Integrated Security=True;Connect Timeout=30");
+            SqlConnection connection = new SqlConnection(sqlConnection);
             data = new DataTable();
             connection.Open();
             SqlCommand sqlCommand = new SqlCommand("SELECT * FROM dbo.[Table]", connection);
@@ -55,7 +59,7 @@ namespace FilManager
             DataTable data;
             bool exist = false;
             row = -1;
-            SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\GitHub Project\FilManager\FilManager\userList.mdf;Integrated Security=True;Connect Timeout=30");
+            SqlConnection connection = new SqlConnection(sqlConnection);
             data = new DataTable();
             connection.Open();
             SqlCommand sqlCommand = new SqlCommand("SELECT * FROM dbo.[Table]", connection);
@@ -90,7 +94,7 @@ namespace FilManager
         {
             bool exist = false;
             userid = "-1";
-            SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\GitHub Project\FilManager\FilManager\userList.mdf;Integrated Security=True;Connect Timeout=30");
+            SqlConnection connection = new SqlConnection(sqlConnection);
             DataTable data = new DataTable();
             connection.Open();
             SqlCommand sqlCommand = new SqlCommand("SELECT * FROM dbo.[Table]", connection);
@@ -129,7 +133,7 @@ namespace FilManager
                         break;
                     }
             }
-            connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\GitHub Project\FilManager\FilManager\userList.mdf;Integrated Security=True;Connect Timeout=30");
+            connection = new SqlConnection(sqlConnection);
             DataTable data = new DataTable();
             connection.Open();
             SqlCommand sqlCommand = new SqlCommand("SELECT * FROM dbo.["+name+"]", connection);

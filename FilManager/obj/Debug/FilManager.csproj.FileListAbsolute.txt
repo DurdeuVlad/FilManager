@@ -17,3 +17,22 @@ D:\GitHub Project\FilManager\FilManager\obj\Debug\FilManager.Contact.resources
 D:\GitHub Project\FilManager\FilManager\obj\Debug\FilManager.Account.resources
 D:\GitHub Project\FilManager\FilManager\obj\Debug\FilManager.AddDialog.resources
 D:\GitHub Project\FilManager\FilManager\obj\Debug\FilManager.AddDialog_FilamentRolls.resources
+D:\GitHub\FilManager\FilManager\bin\Debug\userList.mdf
+D:\GitHub\FilManager\FilManager\bin\Debug\userList_log.ldf
+D:\GitHub\FilManager\FilManager\bin\Debug\FilManager.exe.config
+D:\GitHub\FilManager\FilManager\bin\Debug\FilManager.exe
+D:\GitHub\FilManager\FilManager\bin\Debug\FilManager.pdb
+D:\GitHub\FilManager\FilManager\obj\Debug\FilManager.csprojAssemblyReference.cache
+D:\GitHub\FilManager\FilManager\obj\Debug\FilManager.Account.resources
+D:\GitHub\FilManager\FilManager\obj\Debug\FilManager.AddDialog.resources
+D:\GitHub\FilManager\FilManager\obj\Debug\FilManager.AddDialog_FilamentRolls.resources
+D:\GitHub\FilManager\FilManager\obj\Debug\FilManager.Contact.resources
+D:\GitHub\FilManager\FilManager\obj\Debug\FilManager.Login.resources
+D:\GitHub\FilManager\FilManager\obj\Debug\FilManager.MainPage.resources
+D:\GitHub\FilManager\FilManager\obj\Debug\FilManager.Properties.Resources.resources
+D:\GitHub\FilManager\FilManager\obj\Debug\FilManager.Recovery.resources
+D:\GitHub\FilManager\FilManager\obj\Debug\FilManager.Register.resources
+D:\GitHub\FilManager\FilManager\obj\Debug\FilManager.csproj.GenerateResource.cache
+D:\GitHub\FilManager\FilManager\obj\Debug\FilManager.csproj.CoreCompileInputs.cache
+D:\GitHub\FilManager\FilManager\obj\Debug\FilManager.exe
+D:\GitHub\FilManager\FilManager\obj\Debug\FilManager.pdb

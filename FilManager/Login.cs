@@ -10,12 +10,14 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Net.Mail;
 using System.Net;
+using System.IO;
 
 namespace FilManager
 {
     public partial class Login : Form
     {
-        SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\GitHub Project\FilManager\FilManager\userList.mdf;Integrated Security=True;Connect Timeout=30");
+        SqlConnection connection = new SqlConnection(DatabaseCommands.sqlConnection);
+            //new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename="+ Directory.GetCurrentDirectory() +"\\userList.mdf;Integrated Security=True;Connect Timeout=30");
 
         public MainPage _MainPage;
 
