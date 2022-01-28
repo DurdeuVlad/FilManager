@@ -119,6 +119,11 @@ namespace FilManager
             }
         }
 
+        private void Label_type_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void textBox_type_TextChanged(object sender, EventArgs e)
         {
             typeShort = textBox_type.Text;

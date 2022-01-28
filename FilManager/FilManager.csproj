@@ -73,6 +73,12 @@
     <Compile Include="AddDialog.Designer.cs">
       <DependentUpon>AddDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="AddDialog_Clients.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddDialog_Clients.Designer.cs">
+      <DependentUpon>AddDialog_Clients.cs</DependentUpon>
+    </Compile>
     <Compile Include="Contact.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -128,6 +134,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AddDialog.resx">
       <DependentUpon>AddDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddDialog_Clients.resx">
+      <DependentUpon>AddDialog_Clients.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AddDialog_FilamentRolls.resx">
       <DependentUpon>AddDialog_FilamentRolls.cs</DependentUpon>
