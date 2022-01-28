@@ -66,6 +66,7 @@
             this.button_add.TabIndex = 7;
             this.button_add.Text = "Add";
             this.button_add.UseVisualStyleBackColor = true;
+            this.button_add.Click += new System.EventHandler(this.Button_add_Click);
             // 
             // panel_Template
             // 
@@ -82,7 +83,7 @@
             this.panel_Template.Location = new System.Drawing.Point(13, 14);
             this.panel_Template.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panel_Template.Name = "panel_Template";
-            this.panel_Template.Size = new System.Drawing.Size(379, 95);
+            this.panel_Template.Size = new System.Drawing.Size(454, 95);
             this.panel_Template.TabIndex = 6;
             // 
             // label_generated_code
@@ -99,17 +100,17 @@
             // 
             this.textBox_producer.Location = new System.Drawing.Point(228, 53);
             this.textBox_producer.Name = "textBox_producer";
-            this.textBox_producer.Size = new System.Drawing.Size(132, 30);
+            this.textBox_producer.Size = new System.Drawing.Size(220, 30);
             this.textBox_producer.TabIndex = 5;
             // 
             // label_producer
             // 
             this.label_producer.AutoSize = true;
-            this.label_producer.Location = new System.Drawing.Point(247, 27);
+            this.label_producer.Location = new System.Drawing.Point(309, 25);
             this.label_producer.Name = "label_producer";
-            this.label_producer.Size = new System.Drawing.Size(91, 25);
+            this.label_producer.Size = new System.Drawing.Size(60, 25);
             this.label_producer.TabIndex = 4;
-            this.label_producer.Text = "Producer";
+            this.label_producer.Text = "Email";
             // 
             // textBox_type
             // 
@@ -139,15 +140,15 @@
             this.label_id.AutoSize = true;
             this.label_id.Location = new System.Drawing.Point(30, 27);
             this.label_id.Name = "label_id";
-            this.label_id.Size = new System.Drawing.Size(59, 25);
+            this.label_id.Size = new System.Drawing.Size(64, 25);
             this.label_id.TabIndex = 0;
-            this.label_id.Text = "Color";
+            this.label_id.Text = "Name";
             // 
             // AddDialog_Clients
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(398, 192);
+            this.ClientSize = new System.Drawing.Size(473, 192);
             this.Controls.Add(this.button_cancel);
             this.Controls.Add(this.button_add);
             this.Controls.Add(this.panel_Template);

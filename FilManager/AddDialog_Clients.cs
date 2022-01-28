@@ -16,5 +16,10 @@ namespace FilManager
         {
             InitializeComponent();
         }
+
+        private void Button_add_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

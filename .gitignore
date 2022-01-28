@@ -1,0 +1,5 @@
+
+*.cache
+*.ide-shm
+*.ide-wal
+*.cache
