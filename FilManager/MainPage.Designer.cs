@@ -62,6 +62,7 @@ namespace FilManager
             this.panel_main = new System.Windows.Forms.Panel();
             this.button_add = new System.Windows.Forms.Button();
             this.dataGridView_Main = new System.Windows.Forms.DataGridView();
+            this.button_remove = new System.Windows.Forms.Button();
             this.panel_MainMenu.SuspendLayout();
             this.panel_main.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Main)).BeginInit();
@@ -414,6 +415,7 @@ namespace FilManager
             this.panel_main.AutoScroll = true;
             this.panel_main.AutoSize = true;
             this.panel_main.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.panel_main.Controls.Add(this.button_remove);
             this.panel_main.Controls.Add(this.button_add);
             this.panel_main.Controls.Add(this.dataGridView_Main);
             this.panel_main.Controls.Add(this.label_NameUser);
@@ -468,6 +470,20 @@ namespace FilManager
             this.dataGridView_Main.RowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView_Main.Size = new System.Drawing.Size(1132, 536);
             this.dataGridView_Main.TabIndex = 28;
+            // 
+            // button_remove
+            // 
+            this.button_remove.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button_remove.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.button_remove.DialogResult = System.Windows.Forms.DialogResult.No;
+            this.button_remove.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.button_remove.Location = new System.Drawing.Point(722, 71);
+            this.button_remove.Name = "button_remove";
+            this.button_remove.Size = new System.Drawing.Size(196, 50);
+            this.button_remove.TabIndex = 30;
+            this.button_remove.Text = "Remove Selected";
+            this.button_remove.UseVisualStyleBackColor = true;
+            this.button_remove.Click += new System.EventHandler(this.button1_Click);
             // 
             // MainPage
             // 
@@ -524,5 +540,6 @@ namespace FilManager
         private System.Windows.Forms.Button button_FilamentRolls;
         private System.Windows.Forms.DataGridView dataGridView_Main;
         private System.Windows.Forms.Button button_add;
+        private System.Windows.Forms.Button button_remove;
     }
 }

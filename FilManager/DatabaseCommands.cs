@@ -11,9 +11,13 @@ namespace FilManager
 {
     class DatabaseCommands
     {
+<<<<<<< Updated upstream
 
         public static string sqlConnection = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" + Directory.GetCurrentDirectory() + "\\userList.mdf;Integrated Security=True;Connect Timeout=30";
         //@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\GitHub Project\FilManager\FilManager\userList.mdf;Integrated Security=True;Connect Timeout=30
+=======
+       
+>>>>>>> Stashed changes
         /// <summary>
         /// Clasa asta verifica daca exista emailul si returneaza true daca exista,
         /// DataTableul unde a cautat datele si linia unde l-a gasit
@@ -149,6 +153,157 @@ namespace FilManager
             }
             connection.Close();
             return data;
+        }
+
+        /// <summary>
+        /// updateaza un dataTable bazat pe dataTableul si pe numele dat, returneaza debug data
+        /// </summary>
+        /// <param name="name">Numele bazei de date</param>
+        /// <param dataTable="dataTable">Baza de data updatata</param>
+        /// <returns></returns>
+        [Obsolete("Does not work, needs fixing")]
+        public static string InsertDataTable(string name, DataRow dataRow)
+        {
+            
+            return "Updated table "+ name + " the item succesfully";
+        }
+
+        /// <summary>
+        /// updateaza un dataTable bazat pe dataTableul si pe numele dat, returneaza debug data
+        /// </summary>
+        /// <param name="name">Numele bazei de date</param>
+        /// <param dataTable="dataTable">Baza de data updatata</param>
+        /// <returns></returns>
+        public static string RemoveEntry(string TableName, int ID)
+        {
+            SqlConnection connection;
+
+            connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\GitHub Project\FilManager\FilManager\userList.mdf;Integrated Security=True;Connect Timeout=30");
+            SqlCommand sqlCommand = new SqlCommand("DELETE FROM dbo.["+TableName+"] WHERE Id="+ID+";", connection);
+            SqlDataAdapter sqlDataAdapter = new SqlDataAdapter();
+            sqlDataAdapter.DeleteCommand = sqlCommand;
+            sqlCommand.ExecuteNonQuery();
+            connection.Close();
+            return "Removed number:"+ ID + " from table " + TableName + " the item succesfully";
+        }
+
+        /// <summary>
+        /// updateaza un dataTable bazat pe dataTableul si pe numele dat, returneaza debug data
+        /// </summary>
+        /// <param name="name">Numele bazei de date</param>
+        /// <param dataTable="dataTable">Baza de data updatata</param>
+        /// <returns></returns>
+        public static string InsertDataRow(DataRow dataRow, string TableName)
+        {
+            SqlConnection connection;
+
+            connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\GitHub Project\FilManager\FilManager\userList.mdf;Integrated Security=True;Connect Timeout=30");
+            DataTable data = new DataTable();
+            List<string> vs = new List<string>();
+            for (int i = 0; i < dataRow.Table.Columns.Count; i++)
+            {
+                vs.Add(dataRow.Table.Columns[i].ColumnName);
+            }
+            connection.Open();
+            string commandString = "INSERT INTO dbo.[" + TableName + "] (";
+            foreach (string aux in vs)
+            {
+                //commandString = commandString + aux + "=@" + aux+",";
+                commandString = commandString + aux;
+                if (vs.IndexOf(aux) < vs.Count - 1)
+                {
+                    commandString += ",";
+                }
+            }
+            commandString += ")";
+            commandString += " Values (";
+            foreach (string aux in vs)
+            {
+                //commandString = commandString + aux + "=@" + aux;
+                commandString += "@" + aux;
+                if (vs.IndexOf(aux) < vs.Count - 1)
+                {
+                    commandString += ",";
+                }
+            }
+            commandString += ");";
+
+            SqlCommand sqlCommand = new SqlCommand(commandString, connection);
+            SqlDataAdapter sqlDataAdapter = new SqlDataAdapter();
+            sqlDataAdapter.InsertCommand = sqlCommand;
+            foreach (string aux in vs)
+            {
+                try
+                {
+                    sqlCommand.Parameters.Add("@" + aux,
+                        SqlHelper.GetDbType(dataRow.Table.Columns[vs.IndexOf(aux)].DataType), 50, aux);
+                    sqlCommand.Parameters["@" + aux].Value = dataRow.ItemArray[vs.IndexOf(aux)];
+                }
+                catch (Exception e)
+                {
+                    throw new ArgumentException($"NULL is not a supported .NET class, at " + aux
+                        + " vs.IndexOf(aux)=" + vs.IndexOf(aux) + " dataRow.ItemArray[vs.IndexOf(aux)]=" + dataRow.ItemArray[vs.IndexOf(aux)]
+                        + " dataRow.Table.Columns[vs.IndexOf(aux)]=" + dataRow.Table.Columns[vs.IndexOf(aux)].DataType);
+                }
+            }
+
+            try
+            {
+                sqlCommand.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+                throw new ArgumentException($"Syntax Error " + e.Message + "\n Command: " + commandString + "\nItem array " + dataRow.ItemArray[0]);
+            }
+            connection.Close();
+            return "Updated table " + TableName + " the item succesfully";
+        }
+    }
+
+    public static class SqlHelper
+    {
+        private static Dictionary<Type, SqlDbType> typeMap;
+
+        // Create and populate the dictionary in the static constructor
+        static SqlHelper()
+        {
+            typeMap = new Dictionary<Type, SqlDbType>();
+
+            typeMap[typeof(string)] = SqlDbType.NVarChar;
+            typeMap[typeof(char[])] = SqlDbType.NVarChar;
+            typeMap[typeof(byte)] = SqlDbType.TinyInt;
+            typeMap[typeof(short)] = SqlDbType.SmallInt;
+            typeMap[typeof(int)] = SqlDbType.Int;
+            typeMap[typeof(long)] = SqlDbType.BigInt;
+            typeMap[typeof(byte[])] = SqlDbType.Image;
+            typeMap[typeof(bool)] = SqlDbType.Bit;
+            typeMap[typeof(DateTime)] = SqlDbType.DateTime2;
+            typeMap[typeof(DateTimeOffset)] = SqlDbType.DateTimeOffset;
+            typeMap[typeof(decimal)] = SqlDbType.Money;
+            typeMap[typeof(float)] = SqlDbType.Real;
+            typeMap[typeof(double)] = SqlDbType.Float;
+            typeMap[typeof(TimeSpan)] = SqlDbType.Time;
+            /* ... and so on ... */
+        }
+
+        // Non-generic argument-based method
+        public static SqlDbType GetDbType(Type giveType)
+        {
+            // Allow nullable types to be handled
+            giveType = Nullable.GetUnderlyingType(giveType) ?? giveType;
+
+            if (typeMap.ContainsKey(giveType))
+            {
+                return typeMap[giveType];
+            }
+
+            throw new ArgumentException($"{giveType.FullName} is not a supported .NET class");
+        }
+
+        // Generic version
+        public static SqlDbType GetDbType<T>()
+        {
+            return GetDbType(typeof(T));
         }
     }
 }
