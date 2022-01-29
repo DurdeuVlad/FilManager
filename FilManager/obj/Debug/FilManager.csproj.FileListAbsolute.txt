@@ -36,3 +36,4 @@ D:\GitHub\FilManager\FilManager\obj\Debug\FilManager.csproj.GenerateResource.cac
 D:\GitHub\FilManager\FilManager\obj\Debug\FilManager.csproj.CoreCompileInputs.cache
 D:\GitHub\FilManager\FilManager\obj\Debug\FilManager.exe
 D:\GitHub\FilManager\FilManager\obj\Debug\FilManager.pdb
+D:\GitHub\FilManager\FilManager\obj\Debug\FilManager.AddDialog_Clients.resources

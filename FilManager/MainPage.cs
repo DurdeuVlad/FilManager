@@ -171,6 +171,11 @@ namespace FilManager
                 addDialog_FilamentRolls.userId = UserId;
                 addDialog_FilamentRolls.ShowDialog();
                 break;
+            case "CLIENTS":
+                AddDialog_Clients addDialog_clients = new AddDialog_Clients();
+                addDialog_clients.userId = UserId;
+                addDialog_clients.ShowDialog();
+                break;
             }
 
         }

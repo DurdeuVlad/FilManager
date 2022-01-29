@@ -11,13 +11,11 @@ namespace FilManager
 {
     class DatabaseCommands
     {
-<<<<<<< Updated upstream
+//Updated upstream
 
         public static string sqlConnection = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" + Directory.GetCurrentDirectory() + "\\userList.mdf;Integrated Security=True;Connect Timeout=30";
         //@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\GitHub Project\FilManager\FilManager\userList.mdf;Integrated Security=True;Connect Timeout=30
-=======
-       
->>>>>>> Stashed changes
+//Stashed changes
         /// <summary>
         /// Clasa asta verifica daca exista emailul si returneaza true daca exista,
         /// DataTableul unde a cautat datele si linia unde l-a gasit
@@ -178,7 +176,7 @@ namespace FilManager
         {
             SqlConnection connection;
 
-            connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\GitHub Project\FilManager\FilManager\userList.mdf;Integrated Security=True;Connect Timeout=30");
+            connection = new SqlConnection(sqlConnection);
             SqlCommand sqlCommand = new SqlCommand("DELETE FROM dbo.["+TableName+"] WHERE Id="+ID+";", connection);
             SqlDataAdapter sqlDataAdapter = new SqlDataAdapter();
             sqlDataAdapter.DeleteCommand = sqlCommand;
@@ -197,7 +195,7 @@ namespace FilManager
         {
             SqlConnection connection;
 
-            connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\GitHub Project\FilManager\FilManager\userList.mdf;Integrated Security=True;Connect Timeout=30");
+            connection = new SqlConnection(sqlConnection);
             DataTable data = new DataTable();
             List<string> vs = new List<string>();
             for (int i = 0; i < dataRow.Table.Columns.Count; i++)

@@ -32,11 +32,11 @@
             this.button_add = new System.Windows.Forms.Button();
             this.panel_Template = new System.Windows.Forms.Panel();
             this.label_generated_code = new System.Windows.Forms.Label();
-            this.textBox_producer = new System.Windows.Forms.TextBox();
+            this.textBox_email = new System.Windows.Forms.TextBox();
             this.label_producer = new System.Windows.Forms.Label();
             this.textBox_type = new System.Windows.Forms.TextBox();
             this.label_type = new System.Windows.Forms.Label();
-            this.textBox_color = new System.Windows.Forms.TextBox();
+            this.textBox_name = new System.Windows.Forms.TextBox();
             this.label_id = new System.Windows.Forms.Label();
             this.panel_Template.SuspendLayout();
             this.SuspendLayout();
@@ -46,20 +46,21 @@
             this.button_cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.button_cancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.button_cancel.ForeColor = System.Drawing.Color.DarkRed;
-            this.button_cancel.Location = new System.Drawing.Point(162, 119);
+            this.button_cancel.Location = new System.Drawing.Point(262, 119);
             this.button_cancel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button_cancel.Name = "button_cancel";
             this.button_cancel.Size = new System.Drawing.Size(205, 58);
             this.button_cancel.TabIndex = 8;
             this.button_cancel.Text = "Cancel";
             this.button_cancel.UseVisualStyleBackColor = true;
+            this.button_cancel.Click += new System.EventHandler(this.Button_cancel_Click);
             // 
             // button_add
             // 
             this.button_add.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.button_add.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.button_add.ForeColor = System.Drawing.Color.Green;
-            this.button_add.Location = new System.Drawing.Point(19, 119);
+            this.button_add.Location = new System.Drawing.Point(13, 119);
             this.button_add.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button_add.Name = "button_add";
             this.button_add.Size = new System.Drawing.Size(135, 58);
@@ -74,11 +75,11 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel_Template.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.panel_Template.Controls.Add(this.label_generated_code);
-            this.panel_Template.Controls.Add(this.textBox_producer);
+            this.panel_Template.Controls.Add(this.textBox_email);
             this.panel_Template.Controls.Add(this.label_producer);
             this.panel_Template.Controls.Add(this.textBox_type);
             this.panel_Template.Controls.Add(this.label_type);
-            this.panel_Template.Controls.Add(this.textBox_color);
+            this.panel_Template.Controls.Add(this.textBox_name);
             this.panel_Template.Controls.Add(this.label_id);
             this.panel_Template.Location = new System.Drawing.Point(13, 14);
             this.panel_Template.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -96,17 +97,18 @@
             this.label_generated_code.TabIndex = 13;
             this.label_generated_code.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // textBox_producer
+            // textBox_email
             // 
-            this.textBox_producer.Location = new System.Drawing.Point(228, 53);
-            this.textBox_producer.Name = "textBox_producer";
-            this.textBox_producer.Size = new System.Drawing.Size(220, 30);
-            this.textBox_producer.TabIndex = 5;
+            this.textBox_email.Location = new System.Drawing.Point(228, 53);
+            this.textBox_email.Name = "textBox_email";
+            this.textBox_email.Size = new System.Drawing.Size(220, 30);
+            this.textBox_email.TabIndex = 5;
+            this.textBox_email.TextChanged += new System.EventHandler(this.TextBox_email_TextChanged);
             // 
             // label_producer
             // 
             this.label_producer.AutoSize = true;
-            this.label_producer.Location = new System.Drawing.Point(309, 25);
+            this.label_producer.Location = new System.Drawing.Point(294, 25);
             this.label_producer.Name = "label_producer";
             this.label_producer.Size = new System.Drawing.Size(60, 25);
             this.label_producer.TabIndex = 4;
@@ -118,6 +120,7 @@
             this.textBox_type.Name = "textBox_type";
             this.textBox_type.Size = new System.Drawing.Size(105, 30);
             this.textBox_type.TabIndex = 3;
+            this.textBox_type.TextChanged += new System.EventHandler(this.TextBox_type_TextChanged);
             // 
             // label_type
             // 
@@ -128,12 +131,13 @@
             this.label_type.TabIndex = 2;
             this.label_type.Text = "Type";
             // 
-            // textBox_color
+            // textBox_name
             // 
-            this.textBox_color.Location = new System.Drawing.Point(12, 53);
-            this.textBox_color.Name = "textBox_color";
-            this.textBox_color.Size = new System.Drawing.Size(99, 30);
-            this.textBox_color.TabIndex = 1;
+            this.textBox_name.Location = new System.Drawing.Point(12, 55);
+            this.textBox_name.Name = "textBox_name";
+            this.textBox_name.Size = new System.Drawing.Size(99, 30);
+            this.textBox_name.TabIndex = 1;
+            this.textBox_name.TextChanged += new System.EventHandler(this.TextBox_name_TextChanged);
             // 
             // label_id
             // 
@@ -168,11 +172,11 @@
         private System.Windows.Forms.Button button_add;
         private System.Windows.Forms.Panel panel_Template;
         private System.Windows.Forms.Label label_generated_code;
-        private System.Windows.Forms.TextBox textBox_producer;
+        private System.Windows.Forms.TextBox textBox_email;
         private System.Windows.Forms.Label label_producer;
         private System.Windows.Forms.TextBox textBox_type;
         private System.Windows.Forms.Label label_type;
-        private System.Windows.Forms.TextBox textBox_color;
+        private System.Windows.Forms.TextBox textBox_name;
         private System.Windows.Forms.Label label_id;
     }
 }
