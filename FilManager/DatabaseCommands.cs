@@ -11,11 +11,12 @@ namespace FilManager
 {
     class DatabaseCommands
     {
-//Updated upstream
 
-        public static string sqlConnection = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" + Directory.GetCurrentDirectory() + "\\userList.mdf;Integrated Security=True;Connect Timeout=30";
+
+        public static string sqlConnection = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" 
++ Directory.GetCurrentDirectory() + "\\userList.mdf;Integrated Security=True;Connect Timeout=30";
         //@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\GitHub Project\FilManager\FilManager\userList.mdf;Integrated Security=True;Connect Timeout=30
-//Stashed changes
+
         /// <summary>
         /// Clasa asta verifica daca exista emailul si returneaza true daca exista,
         /// DataTableul unde a cautat datele si linia unde l-a gasit
@@ -175,12 +176,12 @@ namespace FilManager
         public static string RemoveEntry(string TableName, int ID)
         {
             SqlConnection connection;
-
             connection = new SqlConnection(sqlConnection);
-            SqlCommand sqlCommand = new SqlCommand("DELETE FROM dbo.["+TableName+"] WHERE Id="+ID+";", connection);
-            SqlDataAdapter sqlDataAdapter = new SqlDataAdapter();
-            sqlDataAdapter.DeleteCommand = sqlCommand;
-            sqlCommand.ExecuteNonQuery();
+            connection.Open();
+            SqlCommand sqlCommand = new SqlCommand("DELETE FROM "+TableName+ " WHERE Id=" + ID + ";", connection);
+            //SqlDataAdapter sqlDataAdapter = new SqlDataAdapter();
+            //sqlDataAdapter.DeleteCommand = sqlCommand;
+            int a = sqlCommand.ExecuteNonQuery();
             connection.Close();
             return "Removed number:"+ ID + " from table " + TableName + " the item succesfully";
         }
@@ -208,7 +209,7 @@ namespace FilManager
             {
                 //commandString = commandString + aux + "=@" + aux+",";
                 commandString = commandString + aux;
-                if (vs.IndexOf(aux) < vs.Count - 1)
+                if (vs.IndexOf(aux) < vs.Count - 1) 
                 {
                     commandString += ",";
                 }

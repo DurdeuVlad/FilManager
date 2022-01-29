@@ -166,7 +166,7 @@ namespace FilManager
         private void button_add_Click(object sender, EventArgs e)
         {
             switch (Selected) { 
-            case "FILAMENT ROLLS":
+            case "FILAMENT_ROLLS":
                 AddDialog_FilamentRolls addDialog_FilamentRolls = new AddDialog_FilamentRolls();
                 addDialog_FilamentRolls.userId = UserId;
                 addDialog_FilamentRolls.ShowDialog();
@@ -289,6 +289,8 @@ namespace FilManager
         /// <param name="Title">What we show to the user</param>
         void ShowData(string TableName, string Title)
         {
+            SelectedIndex = -1;
+            button_remove.Enabled = false;
             label_Title.Text = Title;
             ClearSelected();
             ShowSelected(TableName);
@@ -324,10 +326,54 @@ namespace FilManager
            
 
         }
-
+        int SelectedIndex = -1;
         private void button1_Click(object sender, EventArgs e)
         {
-            //DatabaseCommands.RemoveEntry();
+            if (SelectedIndex != -1)
+            {
+                switch (Selected)
+                {
+                    case "FILAMENT_ROLLS":
+                        DatabaseCommands.RemoveEntry(Selected, SelectedFilament.row);
+                        SelectedFilament.Reset(); break;
+                    case "CLIENTS":
+                        DatabaseCommands.RemoveEntry(Selected, SelectedClient.row);
+                        SelectedClient.Reset(); break;
+                    case "COMMANDS":
+                        DatabaseCommands.RemoveEntry(Selected, SelectedCommand.row);
+                        SelectedCommand.Reset(); break;
+                    case "PRINTERS":
+                        DatabaseCommands.RemoveEntry(Selected, SelectedPrinter.row);
+                        SelectedPrinter.Reset(); break;
+                }
+                
+            }
+        }
+        
+        private void dataGridView_Main_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            switch (Selected)
+            {
+                case "FILAMENT_ROLLS":
+                    SelectedFilament.Select(e.RowIndex, dataGridView_Main.Rows[e.RowIndex].Cells[4].Value.ToString());
+                    break;
+                case "CLIENTS":
+                    SelectedClient.Select(e.RowIndex, dataGridView_Main.Rows[e.RowIndex].Cells[1].Value.ToString());
+                    break;
+                case "COMMANDS":
+                    SelectedClient.Select(e.RowIndex, dataGridView_Main.Rows[e.RowIndex].Cells[0].Value.ToString());
+                    break;
+                case "PRINTERS":
+                    SelectedClient.Select(e.RowIndex, dataGridView_Main.Rows[e.RowIndex].Cells[0].Value.ToString());
+                    break;
+            }
+            SelectedIndex = int.Parse(dataGridView_Main.Rows[e.RowIndex].Cells[0].Value.ToString());
+            button_remove.Enabled = true;
+        }
+
+        private void dataGridView_Main_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            dataGridView_Main_CellContentClick(sender, e);
         }
     }
 }

@@ -27,6 +27,11 @@ namespace FilManager
                 name = _Name;
                 label.Text = _Name;
             }
+            public void Reset()
+            {
+                name = "-";
+                row = -1;
+            }
 
         }
 

@@ -121,6 +121,12 @@
       <DependentUpon>Register.cs</DependentUpon>
     </Compile>
     <Compile Include="StructHolder.cs" />
+    <Compile Include="TEst.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TEst.Designer.cs">
+      <DependentUpon>TEst.cs</DependentUpon>
+    </Compile>
     <Compile Include="userListDataSet.cs">
       <DependentUpon>userListDataSet.xsd</DependentUpon>
     </Compile>
@@ -193,13 +199,6 @@
   <ItemGroup>
     <None Include="Resources\img_87237.png" />
     <None Include="Resources\41-410093_circled-user-icon-user-profile-icon-png.png" />
-    <Content Include="userList.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="userList_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <DependentUpon>userList.mdf</DependentUpon>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
