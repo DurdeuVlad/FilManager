@@ -3,3 +3,5 @@
 *.ide-shm
 *.ide-wal
 *.cache
+*.mdf
+*.cache
