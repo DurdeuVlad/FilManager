@@ -5,3 +5,6 @@
 *.cache
 *.mdf
 *.cache
+FilManager/obj/Debug/FilManager.csproj.CoreCompileInputs.cache
+FilManager/obj/Debug/FilManager.csproj.GenerateResource.cache
+FilManager/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
