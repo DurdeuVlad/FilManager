@@ -143,7 +143,8 @@ namespace FilManager
             {
                 comboBox_day.Items.Add(i.ToString());
             }
-            comboBox_day.SelectedItem = comboBox_day.Items[DateTime.Now.Day-1];
+            comboBox1.SelectedItem = comboBox1.Items[DateTime.Now.Month - 1];
+            comboBox_day.SelectedItem = comboBox_day.Items[DateTime.Now.Day - 1];
             button_add.Enabled = ReadyToRegister;
 
         }
@@ -188,7 +189,7 @@ namespace FilManager
         {
             int aux = 0;
             int.TryParse(comboBox1.Text, out aux);
-            if (!(int.TryParse(comboBox1.Text, out aux) && comboBox1.Items.Contains(aux)))
+            if (!(int.TryParse(comboBox1.Text, out aux) || !comboBox1.Items.Contains(aux)))
                 comboBox1.SelectedIndex = 0;
         }
 
