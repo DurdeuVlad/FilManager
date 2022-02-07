@@ -177,6 +177,7 @@ namespace FilManager
                 addDialog_clients.ShowDialog();
                 break;
             }
+            RefreshTable();
 
         }
         /// <summary>
@@ -282,6 +283,8 @@ namespace FilManager
         {
             ShowData(TableName, TableName);
         }
+        string SelectedTable = "";
+        string SelectedTitle = "";
         /// <summary>
         /// Shows data to the user
         /// </summary>
@@ -289,6 +292,8 @@ namespace FilManager
         /// <param name="Title">What we show to the user</param>
         void ShowData(string TableName, string Title)
         {
+            SelectedTable = TableName;
+            SelectedTitle = Title;
             SelectedIndex = -1;
             button_remove.Enabled = false;
             label_Title.Text = Title;
@@ -326,7 +331,15 @@ namespace FilManager
            
 
         }
+        
         int SelectedIndex = -1;
+
+        private void RefreshTable()
+        {
+            ShowData(SelectedTable, SelectedTitle);
+        }
+
+        
         private void button1_Click(object sender, EventArgs e)
         {
             if (SelectedIndex != -1)

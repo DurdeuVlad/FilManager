@@ -17,8 +17,6 @@ D:\GitHub Project\FilManager\FilManager\obj\Debug\FilManager.Contact.resources
 D:\GitHub Project\FilManager\FilManager\obj\Debug\FilManager.Account.resources
 D:\GitHub Project\FilManager\FilManager\obj\Debug\FilManager.AddDialog.resources
 D:\GitHub Project\FilManager\FilManager\obj\Debug\FilManager.AddDialog_FilamentRolls.resources
-D:\GitHub\FilManager\FilManager\bin\Debug\userList.mdf
-D:\GitHub\FilManager\FilManager\bin\Debug\userList_log.ldf
 D:\GitHub\FilManager\FilManager\bin\Debug\FilManager.exe.config
 D:\GitHub\FilManager\FilManager\bin\Debug\FilManager.exe
 D:\GitHub\FilManager\FilManager\bin\Debug\FilManager.pdb
