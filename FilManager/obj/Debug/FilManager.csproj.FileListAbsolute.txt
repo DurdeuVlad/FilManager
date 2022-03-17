@@ -36,3 +36,4 @@ D:\GitHub\FilManager\FilManager\obj\Debug\FilManager.exe
 D:\GitHub\FilManager\FilManager\obj\Debug\FilManager.pdb
 D:\GitHub\FilManager\FilManager\obj\Debug\FilManager.AddDialog_Clients.resources
 D:\GitHub Project\FilManager\FilManager\obj\Debug\FilManager.AddDialog_Clients.resources
+D:\GitHub\FilManager\FilManager\obj\Debug\FilManager.AddDialog_Commands.resources

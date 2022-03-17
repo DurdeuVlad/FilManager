@@ -129,6 +129,7 @@ namespace FilManager
         private void button_FilamentRolls_Click(object sender, EventArgs e)
         {
             ShowData("FILAMENT_ROLLS", "FILAMENT ROLLS");
+            button_add.Enabled = true;
         }
 
         private void button_Prints_Click(object sender, EventArgs e)
@@ -137,23 +138,26 @@ namespace FilManager
             ShowNeeded("COMMANDS");
             ShowNeeded("PRINTERS");
             ShowNeeded("FILAMENT_ROLLS");
+            button_add.Enabled = !SelectedCommand.IsNull() && !SelectedFilament.IsNull() && !SelectedPrinter.IsNull();
         }
 
         private void button_Clients_Click(object sender, EventArgs e)
         {
             ShowData("CLIENTS");
-            
+            button_add.Enabled = true;
         }
 
         private void button_Commands_Click(object sender, EventArgs e)
         {
             ShowData("COMMANDS");
             ShowNeeded("CLIENTS");
+            button_add.Enabled = !SelectedClient.IsNull();
         }
 
         private void button_Users_Click(object sender, EventArgs e)
         {
             ShowData("LOCAL_USERS", "USERS");
+            button_add.Enabled = true;
         }
 
         private void button_Printers_Click(object sender, EventArgs e)
@@ -161,6 +165,7 @@ namespace FilManager
             ShowData("PRINTERS");
             ShowNeeded("FILAMENT_ROLLS");
             ShowNeeded("COMMANDS");
+            button_add.Enabled = !SelectedCommand.IsNull() && !SelectedFilament.IsNull();
         }
 
         private void button_add_Click(object sender, EventArgs e)
@@ -176,6 +181,12 @@ namespace FilManager
                 addDialog_clients.userId = UserId;
                 addDialog_clients.ShowDialog();
                 break;
+            case "COMMANDS":
+                    AddDialog_Commands addDialog_commands = new AddDialog_Commands();
+                    addDialog_commands.userId = UserId;
+                    addDialog_commands.ClientNumber = SelectedClient.row;
+                    addDialog_commands.ShowDialog();
+                    break;
             }
             RefreshTable();
 

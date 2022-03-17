@@ -209,6 +209,16 @@ namespace FilManager
 
         }
 
+        private void Button_cancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void Panel_Template_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
         private void textBox_type_TextChanged(object sender, EventArgs e)
         {
             typeShort = textBox_type.Text;

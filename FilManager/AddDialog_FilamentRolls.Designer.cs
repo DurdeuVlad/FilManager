@@ -69,6 +69,7 @@ namespace FilManager
             this.button_cancel.TabIndex = 5;
             this.button_cancel.Text = "Cancel";
             this.button_cancel.UseVisualStyleBackColor = true;
+            this.button_cancel.Click += new System.EventHandler(this.Button_cancel_Click);
             // 
             // button_add
             // 
@@ -116,6 +117,7 @@ namespace FilManager
             this.panel_Template.Name = "panel_Template";
             this.panel_Template.Size = new System.Drawing.Size(1270, 95);
             this.panel_Template.TabIndex = 3;
+            this.panel_Template.Paint += new System.Windows.Forms.PaintEventHandler(this.Panel_Template_Paint);
             // 
             // label3
             // 

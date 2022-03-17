@@ -33,6 +33,15 @@ namespace FilManager
                 row = -1;
             }
 
+            public bool IsNull()
+            {
+                if (name == "-")
+                {
+                    return true;
+                }
+                return false;
+            }
+
         }
 
     }
