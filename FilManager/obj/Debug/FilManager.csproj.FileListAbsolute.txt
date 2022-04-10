@@ -37,3 +37,5 @@ D:\GitHub\FilManager\FilManager\obj\Debug\FilManager.pdb
 D:\GitHub\FilManager\FilManager\obj\Debug\FilManager.AddDialog_Clients.resources
 D:\GitHub Project\FilManager\FilManager\obj\Debug\FilManager.AddDialog_Clients.resources
 D:\GitHub\FilManager\FilManager\obj\Debug\FilManager.AddDialog_Commands.resources
+D:\GitHub\FilManager\FilManager\obj\Debug\FilManager.AddDialog_Printers.resources
+D:\GitHub\FilManager\FilManager\obj\Debug\FilManager.AddDialog_Prints.resources

@@ -160,6 +160,7 @@
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "AddDialog_Clients";
             this.Text = "AddDialog_Clients";
+            this.Load += new System.EventHandler(this.AddDialog_Clients_Load);
             this.panel_Template.ResumeLayout(false);
             this.panel_Template.PerformLayout();
             this.ResumeLayout(false);

@@ -15,7 +15,21 @@ namespace FilManager
 
         public static string sqlConnection = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" 
 + Directory.GetCurrentDirectory() + "\\userList.mdf;Integrated Security=True;Connect Timeout=30";
-        //@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\GitHub Project\FilManager\FilManager\userList.mdf;Integrated Security=True;Connect Timeout=30
+
+        /// <summary>
+        /// Gets an entry from the table
+        /// </summary>
+        /// <param name="TableName"></param>
+        /// <param name="Index"></param>
+        /// <returns></returns>
+        public static object[] GetEntry(string TableName, int Index)
+        {
+            DataTable dataTable = ReturnDataTable(TableName);
+            DataRow dataRow;
+            dataRow = dataTable.Rows[Index];
+            return dataRow.ItemArray;
+        }
+
 
         /// <summary>
         /// Clasa asta verifica daca exista emailul si returneaza true daca exista,
@@ -154,18 +168,6 @@ namespace FilManager
             return data;
         }
 
-        /// <summary>
-        /// updateaza un dataTable bazat pe dataTableul si pe numele dat, returneaza debug data
-        /// </summary>
-        /// <param name="name">Numele bazei de date</param>
-        /// <param dataTable="dataTable">Baza de data updatata</param>
-        /// <returns></returns>
-        [Obsolete("Does not work, needs fixing")]
-        public static string InsertDataTable(string name, DataRow dataRow)
-        {
-            
-            return "Updated table "+ name + " the item succesfully";
-        }
 
         /// <summary>
         /// updateaza un dataTable bazat pe dataTableul si pe numele dat, returneaza debug data
@@ -218,7 +220,6 @@ namespace FilManager
             commandString += " Values (";
             foreach (string aux in vs)
             {
-                //commandString = commandString + aux + "=@" + aux;
                 commandString += "@" + aux;
                 if (vs.IndexOf(aux) < vs.Count - 1)
                 {
@@ -233,11 +234,9 @@ namespace FilManager
             foreach (string aux in vs)
             {
                 try
-                {
-                    sqlCommand.Parameters.Add("@" + aux,
+                {                    sqlCommand.Parameters.Add("@" + aux,
                         SqlHelper.GetDbType(dataRow.Table.Columns[vs.IndexOf(aux)].DataType), 50, aux);
-                    sqlCommand.Parameters["@" + aux].Value = dataRow.ItemArray[vs.IndexOf(aux)];
-                }
+                    sqlCommand.Parameters["@" + aux].Value = dataRow.ItemArray[vs.IndexOf(aux)];                }
                 catch (Exception e)
                 {
                     throw new ArgumentException($"NULL is not a supported .NET class, at " + aux
@@ -245,25 +244,21 @@ namespace FilManager
                         + " dataRow.Table.Columns[vs.IndexOf(aux)]=" + dataRow.Table.Columns[vs.IndexOf(aux)].DataType);
                 }
             }
-
-            try
-            {
+            try            {
                 sqlCommand.ExecuteNonQuery();
             }
-            catch (Exception e)
-            {
+            catch (Exception e)            {
                 throw new ArgumentException($"Syntax Error " + e.Message + "\n Command: " + commandString + "\nItem array " + dataRow.ItemArray[0]);
             }
             connection.Close();
-            return "Updated table " + TableName + " the item succesfully";
+            return "Updated table " + TableName + " the item succesfully";        }
         }
-    }
+
+    
 
     public static class SqlHelper
     {
         private static Dictionary<Type, SqlDbType> typeMap;
-
-        // Create and populate the dictionary in the static constructor
         static SqlHelper()
         {
             typeMap = new Dictionary<Type, SqlDbType>();
@@ -282,13 +277,9 @@ namespace FilManager
             typeMap[typeof(float)] = SqlDbType.Real;
             typeMap[typeof(double)] = SqlDbType.Float;
             typeMap[typeof(TimeSpan)] = SqlDbType.Time;
-            /* ... and so on ... */
         }
-
-        // Non-generic argument-based method
         public static SqlDbType GetDbType(Type giveType)
         {
-            // Allow nullable types to be handled
             giveType = Nullable.GetUnderlyingType(giveType) ?? giveType;
 
             if (typeMap.ContainsKey(giveType))
@@ -299,7 +290,6 @@ namespace FilManager
             throw new ArgumentException($"{giveType.FullName} is not a supported .NET class");
         }
 
-        // Generic version
         public static SqlDbType GetDbType<T>()
         {
             return GetDbType(typeof(T));

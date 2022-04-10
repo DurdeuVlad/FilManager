@@ -18,17 +18,13 @@ namespace FilManager
         {
             InitializeComponent();
 
-            //textBox_dateBought.Text = DateTime.Now.ToString();
             for (int i = DateTime.Now.Year; i >= DateTime.Now.Year - 50; i--) 
             {
                 comboBox_year.Items.Add(i.ToString());
             }
-            button_add.Enabled = ReadyToRegister;
-            comboBox1.Enabled = false;
-            comboBox_day.Enabled = false;
-            button_add.Enabled = false;
-            comboBox_year.SelectedIndex = 0;
             
+            
+
 
         }
 
@@ -45,7 +41,14 @@ namespace FilManager
             DataTable dataTable = DatabaseCommands.ReturnDataTable("FILAMENT_ROLLS");
             DataRow dataRow;//dataRow.ItemArray
             dataRow = dataTable.NewRow();
-            rowArray[0] = dataTable.Rows.Count;
+            if (isEditing)
+            {
+                rowArray[0] = editRow;
+            }
+            else
+            {
+                rowArray[0] = dataTable.Rows.Count;
+            }
             rowArray[1] = textBox_color.Text;
             rowArray[2] = textBox_type.Text;
             rowArray[3] = textBox_producer.Text;
@@ -67,13 +70,38 @@ namespace FilManager
             }
             rowArray[11] = userId;
             dataRow.ItemArray = rowArray;
+            if (isEditing)
+            {
+                DatabaseCommands.RemoveEntry("FILAMENT_ROLLS", editRow);
+            }
             DatabaseCommands.InsertDataRow(dataRow, "FILAMENT_ROLLS");
         }
 
+        public bool isEditing = false;
+        public int editRow = 0;
         private void AddDialog_FilamentRolls_Load(object sender, EventArgs e)
         {
+            if (isEditing)
+            {
+                object[] Entry = DatabaseCommands.GetEntry("FILAMENT_ROLLS", editRow);
+                textBox_color.Text = Entry[1].ToString().Trim();
+                textBox_type.Text = Entry[2].ToString().Trim();
+                textBox_producer.Text = Entry[3].ToString().Trim();
+                textBox_generated_code.Text = Entry[4].ToString().Trim();
+                textBox_pricetotal.Text = Entry[5].ToString().Trim();
+                textBox_startweight.Text = Entry[7].ToString().Trim();
+                textBox_currentweight.Text = Entry[8].ToString().Trim();
+                
+                
+                button_add.Text = "Edit";
+            }
+            comboBox_year.SelectedIndex = 0;
+            comboBox1.Enabled = true;
+            comboBox1.SelectedIndex = 0;
+            comboBox_day.Enabled = true;
+            comboBox_day.SelectedIndex = 0;
+            button_add.Enabled = ReadyToRegister;
 
-            
         }
 
         private void textBox_color_TextChanged(object sender, EventArgs e)

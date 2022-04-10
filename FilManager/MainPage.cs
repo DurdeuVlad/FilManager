@@ -17,6 +17,7 @@ namespace FilManager
         StructHolder.SelectedItem SelectedClient;
         StructHolder.SelectedItem SelectedCommand;
         StructHolder.SelectedItem SelectedUser;
+        StructHolder.SelectedItem SelectedPrints;
 
         string Selected = "";
         public string LoginEmail;
@@ -92,6 +93,7 @@ namespace FilManager
             SelectedClient.Select(0, "-", label_NameClient);
             SelectedCommand.Select(0, "-", label_NameCommand);
             SelectedUser.Select(0, "-", label_NameUser);
+            SelectedPrints.Select(0, "-", label_NameUser);
             panel_MainMenu.Visible = true;
             button_Decolapse.Visible = false;
             label_Title.Text = "Welcome Back!";
@@ -184,8 +186,58 @@ namespace FilManager
             case "COMMANDS":
                     AddDialog_Commands addDialog_commands = new AddDialog_Commands();
                     addDialog_commands.userId = UserId;
-                    addDialog_commands.ClientNumber = SelectedClient.row;
+                    addDialog_commands.clientName = new List<string>();
+                    addDialog_commands.clientName.Add(SelectedClient.name);
+                    addDialog_commands.clientName.Add("None");
+                    addDialog_commands.clientId = new List<int>();
+                    addDialog_commands.clientId.Add(SelectedClient.row);
+                    addDialog_commands.clientId.Add(-1);
                     addDialog_commands.ShowDialog();
+                    break;
+            case "PRINTERS":
+                    AddDialog_Printers addDialog_printers = new AddDialog_Printers();
+                    addDialog_printers.userId = UserId;
+                    addDialog_printers.currentFilamentName = new List<string>();
+                    addDialog_printers.currentFilamentName.Add(SelectedFilament.name);
+                    addDialog_printers.currentFilamentName.Add("None");
+                    addDialog_printers.currentFilamentId = new List<int>();
+                    addDialog_printers.currentFilamentId.Add(SelectedFilament.row);
+                    addDialog_printers.currentFilamentId.Add(-1);
+
+                    addDialog_printers.lastCommandName = new List<string>();
+                    addDialog_printers.lastCommandName.Add(SelectedCommand.name);
+                    addDialog_printers.lastCommandName.Add("None");
+                    addDialog_printers.lastCommandId = new List<int>();
+                    addDialog_printers.lastCommandId.Add(SelectedCommand.row);
+                    addDialog_printers.lastCommandId.Add(-1);
+
+                    addDialog_printers.ShowDialog();
+                    break;
+                case "PRINTS":
+                    AddDialog_Prints addDialog_prints = new AddDialog_Prints();
+                    addDialog_prints.userId = UserId;
+                    addDialog_prints.filamentName = new List<string>();
+                    addDialog_prints.filamentName.Add(SelectedFilament.name);
+                    addDialog_prints.filamentName.Add("None");
+                    addDialog_prints.filamentId = new List<int>();
+                    addDialog_prints.filamentId.Add(SelectedFilament.row);
+                    addDialog_prints.filamentId.Add(-1);
+
+                    addDialog_prints.commandName = new List<string>();
+                    addDialog_prints.commandName.Add(SelectedCommand.name);
+                    addDialog_prints.commandName.Add("None");
+                    addDialog_prints.commandId = new List<int>();
+                    addDialog_prints.commandId.Add(SelectedCommand.row);
+                    addDialog_prints.commandId.Add(-1);
+
+                    addDialog_prints.printerName = new List<string>();
+                    addDialog_prints.printerName.Add(SelectedPrinter.name);
+                    addDialog_prints.printerName.Add("None");
+                    addDialog_prints.printerId = new List<int>();
+                    addDialog_prints.printerId.Add(SelectedPrinter.row);
+                    addDialog_prints.printerId.Add(-1);
+
+                    addDialog_prints.ShowDialog();
                     break;
             }
             RefreshTable();
@@ -306,7 +358,7 @@ namespace FilManager
             SelectedTable = TableName;
             SelectedTitle = Title;
             SelectedIndex = -1;
-            button_remove.Enabled = false;
+            button_remove.Enabled = false; button_Edit.Enabled = false;
             label_Title.Text = Title;
             ClearSelected();
             ShowSelected(TableName);
@@ -321,19 +373,28 @@ namespace FilManager
             dataTableFinal.Rows.Clear();
             dataGridView_Main.DataSource = dataTableFinal;
 
-            
 
+            int i = 0;
             //fill dataTableFinal with rows
             foreach (DataRow dataGrid in dataTable.Rows)
             {
-                if (int.Parse(dataGrid[dataGridView_Main.Columns.Count - 1].ToString()) == UserId)
-                {
+               
+                try { 
+                    if (int.Parse(dataGrid[dataGridView_Main.Columns.Count - 1].ToString()) == UserId)
+                    {
 
-                    DataRow aux = dataTableFinal.NewRow();
-                    aux.ItemArray = dataGrid.ItemArray;
-                    dataTableFinal.Rows.Add(aux);
+                        DataRow aux = dataTableFinal.NewRow();
+                        aux.ItemArray = dataGrid.ItemArray;
+                        dataTableFinal.Rows.Add(aux);
 
+                    }
                 }
+                catch (Exception e)
+                    {
+                    DatabaseCommands.RemoveEntry(TableName, i);
+                    //throw new WarningException("Error: \"" + e.Message + "\"\n dataGrid[dataGridView_Main.Columns.Count - 1].ToString()="+ dataGrid[dataGridView_Main.Columns.Count - 1].ToString());
+                    }
+                i++;
             }
             dataTableFinal.Columns.RemoveAt(dataTable.Columns.Count - 1);
             //fill dataGridView with data
@@ -369,35 +430,154 @@ namespace FilManager
                     case "PRINTERS":
                         DatabaseCommands.RemoveEntry(Selected, SelectedPrinter.row);
                         SelectedPrinter.Reset(); break;
+                    case "PRINTS":
+                        DatabaseCommands.RemoveEntry(Selected, SelectedPrints.row);
+                        SelectedPrinter.Reset(); break;
                 }
                 
             }
+            RefreshTable();
         }
         
         private void dataGridView_Main_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            try { 
             switch (Selected)
             {
                 case "FILAMENT_ROLLS":
-                    SelectedFilament.Select(e.RowIndex, dataGridView_Main.Rows[e.RowIndex].Cells[4].Value.ToString());
+                    SelectedFilament.Select(int.Parse(dataGridView_Main.Rows[e.RowIndex].Cells[0].Value.ToString()), dataGridView_Main.Rows[e.RowIndex].Cells[4].Value.ToString());
                     break;
                 case "CLIENTS":
-                    SelectedClient.Select(e.RowIndex, dataGridView_Main.Rows[e.RowIndex].Cells[1].Value.ToString());
+                    SelectedClient.Select(int.Parse(dataGridView_Main.Rows[e.RowIndex].Cells[0].Value.ToString()), dataGridView_Main.Rows[e.RowIndex].Cells[2].Value.ToString());
                     break;
                 case "COMMANDS":
-                    SelectedClient.Select(e.RowIndex, dataGridView_Main.Rows[e.RowIndex].Cells[0].Value.ToString());
+                    SelectedCommand.Select(int.Parse(dataGridView_Main.Rows[e.RowIndex].Cells[0].Value.ToString()), dataGridView_Main.Rows[e.RowIndex].Cells[0].Value.ToString());
                     break;
                 case "PRINTERS":
-                    SelectedClient.Select(e.RowIndex, dataGridView_Main.Rows[e.RowIndex].Cells[0].Value.ToString());
+                    SelectedPrinter.Select(int.Parse(dataGridView_Main.Rows[e.RowIndex].Cells[0].Value.ToString()), dataGridView_Main.Rows[e.RowIndex].Cells[1].Value.ToString());
                     break;
-            }
+                case "PRINTS":
+                    SelectedPrints.Select(int.Parse(dataGridView_Main.Rows[e.RowIndex].Cells[0].Value.ToString()), dataGridView_Main.Rows[e.RowIndex].Cells[1].Value.ToString());
+                    break;
+                }
             SelectedIndex = int.Parse(dataGridView_Main.Rows[e.RowIndex].Cells[0].Value.ToString());
             button_remove.Enabled = true;
+            button_Edit.Enabled = true;
+
+            }
+            catch(Exception)
+            {
+
+            }
         }
 
         private void dataGridView_Main_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             dataGridView_Main_CellContentClick(sender, e);
+        }
+
+        private void Button_Edit_Click(object sender, EventArgs e)
+        {
+            switch (Selected)
+            {
+                case "FILAMENT_ROLLS":
+                    AddDialog_FilamentRolls addDialog_FilamentRolls = new AddDialog_FilamentRolls();
+                    addDialog_FilamentRolls.userId = UserId;
+                    addDialog_FilamentRolls.isEditing = true;
+                    addDialog_FilamentRolls.editRow = SelectedFilament.row;
+
+                    addDialog_FilamentRolls.ShowDialog();
+                    break;
+                case "CLIENTS":
+                    AddDialog_Clients addDialog_clients = new AddDialog_Clients();
+                    addDialog_clients.userId = UserId;
+                    addDialog_clients.isEditing = true;
+                    addDialog_clients.editRow = SelectedClient.row;
+                    addDialog_clients.ShowDialog();
+                    break;
+                case "COMMANDS":
+                    AddDialog_Commands addDialog_commands = new AddDialog_Commands();
+                    addDialog_commands.userId = UserId;
+                    addDialog_commands.isEditing = true;
+                    addDialog_commands.editRow = SelectedPrints.row;
+
+                    addDialog_commands.clientName = new List<string>();
+                    addDialog_commands.clientName.Add(dataGridView_Main.Rows[SelectedPrints.row].Cells[1].Value.ToString());
+                    addDialog_commands.clientName.Add(SelectedClient.name);
+                    addDialog_commands.clientName.Add("None");
+                    addDialog_commands.clientId = new List<int>();
+                    addDialog_commands.clientId.Add(int.Parse(dataGridView_Main.Rows[SelectedPrints.row].Cells[0].Value.ToString()));
+                    addDialog_commands.clientId.Add(SelectedClient.row);
+                    addDialog_commands.clientId.Add(-1);
+                    addDialog_commands.ShowDialog();
+                    break;
+                case "PRINTERS":
+                    AddDialog_Printers addDialog_printers = new AddDialog_Printers();
+                    addDialog_printers.userId = UserId;
+                    addDialog_printers.isEditing = true;
+                    addDialog_printers.editRow = SelectedPrinter.row;
+
+                    addDialog_printers.currentFilamentName = new List<string>();
+                    addDialog_printers.currentFilamentName.Add(dataGridView_Main.Rows[SelectedPrints.row].Cells[1].Value.ToString());
+                    addDialog_printers.currentFilamentName.Add(SelectedFilament.name);
+                    addDialog_printers.currentFilamentName.Add("None");
+                    addDialog_printers.currentFilamentId = new List<int>();
+                    addDialog_printers.currentFilamentId.Add(int.Parse(dataGridView_Main.Rows[SelectedPrints.row].Cells[0].Value.ToString()));
+                    addDialog_printers.currentFilamentId.Add(SelectedFilament.row);
+                    addDialog_printers.currentFilamentId.Add(-1);
+
+                    addDialog_printers.lastCommandName = new List<string>();
+                    addDialog_printers.lastCommandName.Add(dataGridView_Main.Rows[SelectedPrints.row].Cells[2].Value.ToString());
+                    addDialog_printers.lastCommandName.Add(SelectedCommand.name);
+                    addDialog_printers.lastCommandName.Add("None");
+                    addDialog_printers.lastCommandId = new List<int>();
+                    addDialog_printers.lastCommandId.Add(SelectedCommand.row);
+                    addDialog_printers.lastCommandId.Add(int.Parse(dataGridView_Main.Rows[SelectedPrints.row].Cells[2].Value.ToString()));
+                    addDialog_printers.lastCommandId.Add(-1);
+
+                    addDialog_printers.ShowDialog();
+                    break;
+                case "PRINTS":
+                    AddDialog_Prints addDialog_prints = new AddDialog_Prints();
+                    addDialog_prints.userId = UserId;
+                    addDialog_prints.isEditing = true;
+                    addDialog_prints.editRow = SelectedPrints.row;
+                    addDialog_prints.filamentName = new List<string>();
+                    addDialog_prints.filamentName.Add(dataGridView_Main.Rows[SelectedPrints.row].Cells[3].Value.ToString());
+                    addDialog_prints.filamentName.Add(SelectedFilament.name);
+                    addDialog_prints.filamentName.Add("None");
+                    addDialog_prints.filamentId = new List<int>();
+                    addDialog_prints.filamentId.Add(int.Parse(dataGridView_Main.Rows[SelectedPrints.row].Cells[3].Value.ToString()));
+                    addDialog_prints.filamentId.Add(SelectedFilament.row);
+                    addDialog_prints.filamentId.Add(-1);
+
+                    addDialog_prints.commandName = new List<string>();
+                    addDialog_prints.commandName.Add(dataGridView_Main.Rows[SelectedPrints.row].Cells[2].Value.ToString());
+                    addDialog_prints.commandName.Add(SelectedCommand.name);
+
+                    addDialog_prints.commandName.Add("None");
+
+                    addDialog_prints.commandId = new List<int>();
+                    addDialog_prints.commandId.Add(int.Parse(dataGridView_Main.Rows[SelectedPrints.row].Cells[2].Value.ToString()));
+                    addDialog_prints.commandId.Add(SelectedCommand.row);
+
+                    addDialog_prints.commandId.Add(-1);
+
+                    addDialog_prints.printerName = new List<string>();
+                    addDialog_prints.commandName.Add(dataGridView_Main.Rows[SelectedPrints.row].Cells[1].Value.ToString());
+                    addDialog_prints.printerName.Add(SelectedPrinter.name);
+
+                    addDialog_prints.printerName.Add("None");
+                    addDialog_prints.printerId = new List<int>();
+                    addDialog_prints.commandId.Add(int.Parse(dataGridView_Main.Rows[SelectedPrints.row].Cells[1].Value.ToString()));
+                    addDialog_prints.printerId.Add(SelectedPrinter.row);
+
+                    addDialog_prints.printerId.Add(-1);
+
+                    addDialog_prints.ShowDialog();
+                    break;
+            }
+            RefreshTable();
         }
     }
 }

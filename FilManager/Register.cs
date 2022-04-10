@@ -11,7 +11,7 @@ namespace FilManager
 {
     public partial class Register : Form
     {
-        SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\GitHub Project\FilManager\FilManager\userList.mdf;Integrated Security=True;Connect Timeout=30");
+        SqlConnection connection = new SqlConnection(DatabaseCommands.sqlConnection);
 
         public Register()
         {
