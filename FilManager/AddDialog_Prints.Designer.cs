@@ -215,6 +215,7 @@
             this.textBox_GramsUsed.Size = new System.Drawing.Size(152, 30);
             this.textBox_GramsUsed.TabIndex = 39;
             this.textBox_GramsUsed.Text = "100";
+            this.textBox_GramsUsed.TextChanged += new System.EventHandler(this.TextBox_GramsUsed_TextChanged);
             // 
             // label_dateBought
             // 

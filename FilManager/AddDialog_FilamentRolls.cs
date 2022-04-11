@@ -47,7 +47,7 @@ namespace FilManager
             }
             else
             {
-                rowArray[0] = dataTable.Rows.Count;
+                rowArray[0] = DatabaseCommands.GetIndex("FILAMENT_ROLLS");
             }
             rowArray[1] = textBox_color.Text;
             rowArray[2] = textBox_type.Text;
@@ -81,9 +81,10 @@ namespace FilManager
         public int editRow = 0;
         private void AddDialog_FilamentRolls_Load(object sender, EventArgs e)
         {
+
             if (isEditing)
             {
-                object[] Entry = DatabaseCommands.GetEntry("FILAMENT_ROLLS", editRow);
+                object[] Entry = DatabaseCommands.GetEntryByRow("FILAMENT_ROLLS", editRow);
                 textBox_color.Text = Entry[1].ToString().Trim();
                 textBox_type.Text = Entry[2].ToString().Trim();
                 textBox_producer.Text = Entry[3].ToString().Trim();
@@ -100,8 +101,14 @@ namespace FilManager
             comboBox1.SelectedIndex = 0;
             comboBox_day.Enabled = true;
             comboBox_day.SelectedIndex = 0;
-            button_add.Enabled = ReadyToRegister;
+            colorShort = textBox_color.Text;
+            typeShort = textBox_type.Text;
 
+            button_add.Enabled = ReadyToRegister;
+            if (!isEditing)
+            { 
+                ChangeUniqueCode();
+            }
         }
 
         private void textBox_color_TextChanged(object sender, EventArgs e)
@@ -253,18 +260,20 @@ namespace FilManager
             button_add.Enabled = ReadyToRegister;
             ChangeUniqueCode();
         }
-
+        bool UniqueCode => itemId.ToString().Length != 0 && colorShort.Length != 0 && typeShort.Length != 0;
         void ChangeUniqueCode()
         {
-            idShort = itemId.ToString();
-            if(idShort.Length < 2)
-            {
-                idShort = 0 + idShort;
+            if (UniqueCode) { 
+                idShort = itemId.ToString();
+                if(idShort.Length < 2)
+                {
+                    idShort = 0 + idShort;
+                }
+                if(colorShort.Length>=2 && typeShort.Length >= 2)
+                    textBox_generated_code.Text = colorShort.Trim().Substring(0, 2)
+                        + idShort.Trim().Substring(0, 2)
+                        + typeShort.Trim().Substring(0, 2);
             }
-            if(colorShort.Length>=2 && typeShort.Length >= 2)
-                textBox_generated_code.Text = colorShort.Trim().Substring(0, 2)
-                    + idShort.Trim().Substring(0, 2)
-                    + typeShort.Trim().Substring(0, 2);
 
         }
     }

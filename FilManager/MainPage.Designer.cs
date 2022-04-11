@@ -493,10 +493,10 @@ namespace FilManager
             this.button_remove.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.button_remove.DialogResult = System.Windows.Forms.DialogResult.No;
             this.button_remove.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button_remove.Location = new System.Drawing.Point(1146, 11);
+            this.button_remove.Location = new System.Drawing.Point(1114, 11);
             this.button_remove.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button_remove.Name = "button_remove";
-            this.button_remove.Size = new System.Drawing.Size(219, 64);
+            this.button_remove.Size = new System.Drawing.Size(251, 64);
             this.button_remove.TabIndex = 30;
             this.button_remove.Text = "Remove Selected";
             this.button_remove.UseVisualStyleBackColor = true;
@@ -509,10 +509,10 @@ namespace FilManager
             this.button_add.DialogResult = System.Windows.Forms.DialogResult.No;
             this.button_add.Enabled = false;
             this.button_add.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button_add.Location = new System.Drawing.Point(1146, 86);
+            this.button_add.Location = new System.Drawing.Point(1114, 86);
             this.button_add.Margin = new System.Windows.Forms.Padding(4);
             this.button_add.Name = "button_add";
-            this.button_add.Size = new System.Drawing.Size(369, 62);
+            this.button_add.Size = new System.Drawing.Size(401, 62);
             this.button_add.TabIndex = 29;
             this.button_add.Text = "Add New";
             this.button_add.UseVisualStyleBackColor = true;

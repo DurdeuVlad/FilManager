@@ -46,7 +46,7 @@ namespace FilManager
         {
             if (isEditing)
             {
-                object[] Entry = DatabaseCommands.GetEntry("PRINTS", editRow);
+                object[] Entry = DatabaseCommands.GetEntryByRow("PRINTS", editRow);
                 checkBox_wasSuccessful.Checked = bool.Parse(Entry[4].ToString());
                 textBox_GramsUsed.Text = Entry[6].ToString().Trim();
                 button_add.Text = "Edit";
@@ -66,6 +66,15 @@ namespace FilManager
                 listBox_printerId.Items.Add(s);
             }
             listBox_printerId.SelectedIndex = 0;
+        }
+
+        private void TextBox_GramsUsed_TextChanged(object sender, EventArgs e)
+        {
+
+            long number;
+            long.TryParse(textBox_GramsUsed.Text, out number);
+            textBox_GramsUsed.Text = number.ToString();
+            button_add.Enabled = ReadyToRegister;
         }
 
         private void ComboBox_month_SelectedIndexChanged(object sender, EventArgs e)
@@ -131,7 +140,7 @@ namespace FilManager
             }
             else
             {
-                rowArray[0] = dataTable.Rows.Count;
+                rowArray[0] = DatabaseCommands.GetIndex("PRINTS");
             }
             rowArray[1] = commandId[listBox_commandId.SelectedIndex];
             rowArray[2] = printerId[listBox_printerId.SelectedIndex];

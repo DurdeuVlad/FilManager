@@ -158,6 +158,9 @@ namespace FilManager
         private void TextBox_BuyCost_TextChanged(object sender, EventArgs e)
         {
             button_add.Enabled = ReadyToRegister;
+            long number;
+            long.TryParse(textBox_BuyCost.Text, out number);
+            textBox_BuyCost.Text = number.ToString();
         }
 
         private void ComboBox_day2_SelectedIndexChanged(object sender, EventArgs e)
@@ -169,7 +172,7 @@ namespace FilManager
         {
             if (isEditing)
             {
-                object[] Entry = DatabaseCommands.GetEntry("PRINTERS", editRow);
+                object[] Entry = DatabaseCommands.GetEntryByRow("PRINTERS", editRow);
                 textBox_Producer.Text = Entry[1].ToString().Trim();
                 textBox_BuyCost.Text = Entry[2].ToString().Trim();
                 checkBox_inMaintanance.Checked = bool.Parse(Entry[7].ToString());
@@ -204,7 +207,7 @@ namespace FilManager
             }
             else
             {
-                rowArray[0] = dataTable.Rows.Count;
+                rowArray[0] = DatabaseCommands.GetIndex("PRINTERS");
             }
             rowArray[1] = textBox_Producer.Text.Trim();
             rowArray[2] = textBox_BuyCost.Text.Trim();

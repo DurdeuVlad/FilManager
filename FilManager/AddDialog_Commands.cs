@@ -32,7 +32,7 @@ namespace FilManager
         {
             if (isEditing)
             {
-                object[] Entry = DatabaseCommands.GetEntry("COMMANDS", editRow);
+                object[] Entry = DatabaseCommands.GetEntryByRow("COMMANDS", editRow);
                 checkBox_wasprinted.Checked = bool.Parse(Entry[3].ToString());
                 checkBox_wassent.Checked = bool.Parse(Entry[4].ToString());
                 checkBox_wasreceived.Checked = bool.Parse(Entry[5].ToString());
@@ -76,7 +76,7 @@ namespace FilManager
             }
             else
             {
-                try { rowArray[0] = dataTable.Rows.Count; }// int.Parse(dataTable.Rows[dataTable.Rows.Count].ItemArray[0].ToString()) + 1; }
+                try { rowArray[0] = DatabaseCommands.GetIndex("COMMANDS"); }// int.Parse(dataTable.Rows[dataTable.Rows.Count].ItemArray[0].ToString()) + 1; }
                 catch (Exception) { rowArray[0] = 0; }
             }
             rowArray[1] = DateTime.Now;

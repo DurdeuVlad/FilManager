@@ -35,7 +35,7 @@ namespace FilManager
             }
             else
             {
-                rowArray[0] = dataTable.Rows.Count;
+                rowArray[0] = DatabaseCommands.GetIndex("CLIENTS");
             }
             rowArray[1] = textBox_name.Text.Trim();
             rowArray[2] = textBox_email.Text.Trim();
@@ -74,7 +74,7 @@ namespace FilManager
         {
             if (isEditing)
             {
-                object[] Entry = DatabaseCommands.GetEntry("CLIENTS", editRow);
+                object[] Entry = DatabaseCommands.GetEntryByRow("CLIENTS", editRow);
                 textBox_name.Text = Entry[1].ToString().Trim();
                 textBox_type.Text = Entry[4].ToString().Trim();
                 textBox_email.Text = Entry[2].ToString().Trim();

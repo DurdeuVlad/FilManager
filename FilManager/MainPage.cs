@@ -132,21 +132,35 @@ namespace FilManager
         {
             ShowData("FILAMENT_ROLLS", "FILAMENT ROLLS");
             button_add.Enabled = true;
+            button_Edit.Enabled = button_add.Enabled && button_remove.Enabled;
         }
 
         private void button_Prints_Click(object sender, EventArgs e)
         {
+            //add to prints 7 from FILAMENT_ROLLS 6*PRINTS 6 (condition 3)
+            for (int i = 0; i < DatabaseCommands.GetEntryCount("PRINTS"); i++)
+            {
+                int filamentId = int.Parse(DatabaseCommands.GetEntryByRow("PRINTS", i)[3].ToString());
+                float aux2 = float.Parse(DatabaseCommands.GetEntryBySearch("FILAMENT_ROLLS", filamentId)[6].ToString());
+                object sum = float.Parse(DatabaseCommands.GetEntryByRow("PRINTS", i)[6].ToString()) 
+                    * aux2;
+                DatabaseCommands.UpdateItemRow("PRINTS", i, sum, 7);
+                // object sum = DatabaseCommands.ColumnSum("FILAMENT_ROLLS", i, 3, 6);// * DatabaseCommands.GetCellByName("PRINTS", );
+                // DatabaseCommands.UpdateItemRow("PRINTS", i, sum, 7);
+            }
             ShowData("PRINTS");
             ShowNeeded("COMMANDS");
             ShowNeeded("PRINTERS");
             ShowNeeded("FILAMENT_ROLLS");
             button_add.Enabled = !SelectedCommand.IsNull() && !SelectedFilament.IsNull() && !SelectedPrinter.IsNull();
+            button_Edit.Enabled = button_add.Enabled && button_remove.Enabled;
         }
 
         private void button_Clients_Click(object sender, EventArgs e)
         {
             ShowData("CLIENTS");
             button_add.Enabled = true;
+            button_Edit.Enabled = button_add.Enabled && button_remove.Enabled;
         }
 
         private void button_Commands_Click(object sender, EventArgs e)
@@ -154,20 +168,32 @@ namespace FilManager
             ShowData("COMMANDS");
             ShowNeeded("CLIENTS");
             button_add.Enabled = !SelectedClient.IsNull();
+            button_Edit.Enabled = button_add.Enabled && button_remove.Enabled;
         }
 
         private void button_Users_Click(object sender, EventArgs e)
         {
             ShowData("LOCAL_USERS", "USERS");
             button_add.Enabled = true;
+            button_Edit.Enabled = button_add.Enabled && button_remove.Enabled;
         }
 
         private void button_Printers_Click(object sender, EventArgs e)
         {
+            //add to printers 6 from prints 6 (condition 2)
+            for (int i = 0; i < DatabaseCommands.GetEntryCount("PRINTERS"); i++)
+            {
+                object sum = DatabaseCommands.ColumnSum("PRINTS", i, 2, 6);
+                DatabaseCommands.UpdateItemRow("PRINTERS", i, sum, 6);
+            }
+
             ShowData("PRINTERS");
             ShowNeeded("FILAMENT_ROLLS");
             ShowNeeded("COMMANDS");
             button_add.Enabled = !SelectedCommand.IsNull() && !SelectedFilament.IsNull();
+            button_Edit.Enabled = button_add.Enabled && button_remove.Enabled;
+            
+
         }
 
         private void button_add_Click(object sender, EventArgs e)
@@ -462,7 +488,7 @@ namespace FilManager
                 }
             SelectedIndex = int.Parse(dataGridView_Main.Rows[e.RowIndex].Cells[0].Value.ToString());
             button_remove.Enabled = true;
-            button_Edit.Enabled = true;
+            button_Edit.Enabled = button_add.Enabled;
 
             }
             catch(Exception)
@@ -502,7 +528,7 @@ namespace FilManager
                     addDialog_commands.editRow = SelectedPrints.row;
 
                     addDialog_commands.clientName = new List<string>();
-                    addDialog_commands.clientName.Add(dataGridView_Main.Rows[SelectedPrints.row].Cells[1].Value.ToString());
+                    addDialog_commands.clientName.Add(dataGridView_Main.Rows[SelectedPrints.row].Cells[2].Value.ToString());
                     addDialog_commands.clientName.Add(SelectedClient.name);
                     addDialog_commands.clientName.Add("None");
                     addDialog_commands.clientId = new List<int>();

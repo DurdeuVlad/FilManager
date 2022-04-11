@@ -16,17 +16,125 @@ namespace FilManager
         public static string sqlConnection = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" 
 + Directory.GetCurrentDirectory() + "\\userList.mdf;Integrated Security=True;Connect Timeout=30";
 
+
+        public static string GetCellByName(string TableName, string ColumnName, int Row)
+        {
+            DataTable dataTable = ReturnDataTable(TableName);
+            DataRow dataRow = dataTable.Rows[Row];
+            string result = "";
+            int i = 0;
+            foreach(object obj in dataRow.ItemArray)
+            {
+                if (dataTable.Columns[i].ToString() == ColumnName)
+                {
+                    result = obj.ToString();
+                    break;
+                }
+                i++;
+            }
+            return result;
+        }
+        
+        public static int GetEntryCount(string TableName)
+        {
+            return ReturnDataTable(TableName).Rows.Count;
+        }
+
+        /// <summary>
+        /// Updates a single item from a row
+        /// </summary>
+        /// <param name="TableName"></param>
+        /// <param name="editRow"></param>
+        /// <param name="item"></param>
+        /// <param name="index"></param>
+        public static void UpdateItemRow(string TableName, int editRow, object item, int index)
+        {
+            DataTable dataTable = ReturnDataTable(TableName);
+            DataRow dataRow = dataTable.Rows[editRow];
+            dataRow[index] = item;
+            RemoveEntry(TableName, editRow);
+            InsertDataRow(dataRow, TableName);
+        }
+
+        /// <summary>
+        /// Adds every entry of from sumColumn which conditionColumn.Coloumns[index] is == conditionIndex
+        /// </summary>
+        /// <param name="TableName"></param>
+        /// <param name="index"></param>
+        /// <param name="column"></param>
+        /// <returns></returns>
+        public static float ColumnSum(string TableName, int conditionIndex, int conditionColumn, int sumColumn)
+        {
+            float sum = 0;
+            DataTable dataTable = ReturnDataTable(TableName);
+            foreach (DataRow dataRow in dataTable.Rows)
+            {
+                if (int.Parse(dataRow.ItemArray[conditionColumn].ToString()) == conditionIndex) { 
+                    sum += int.Parse(dataRow.ItemArray[sumColumn].ToString());
+                }
+            }
+            return sum;
+        }
+
+        /// <summary>
+        /// Will get the smallest unique index available
+        /// </summary>
+        /// <param name="TableName"></param>
+        /// <returns></returns>
+        public static int GetIndex(string TableName)
+        {
+            int index = -1;
+            List<int> ins = new List<int>();
+            DataTable dataTable = ReturnDataTable(TableName);
+            foreach(DataRow dataRow in dataTable.Rows)
+            {
+                ins.Add(int.Parse(dataRow.ItemArray[0].ToString()));
+            }
+            for(int i=0;i<= dataTable.Rows.Count; i++)
+            {
+                if (!ins.Contains(i))
+                {
+                    index = i;
+                    break;
+                }
+            }
+            return index;
+        }
+
+
+
         /// <summary>
         /// Gets an entry from the table
         /// </summary>
         /// <param name="TableName"></param>
         /// <param name="Index"></param>
         /// <returns></returns>
-        public static object[] GetEntry(string TableName, int Index)
+        public static object[] GetEntryByRow(string TableName, int Index)
         {
             DataTable dataTable = ReturnDataTable(TableName);
             DataRow dataRow;
-            dataRow = dataTable.Rows[Index];
+            try {
+                dataRow = dataTable.Rows[Index];
+                return dataRow.ItemArray;
+            }
+            catch (Exception)
+            {
+
+                return GetEntryBySearch(TableName, Index);
+            }
+            
+        }
+
+        public static object[] GetEntryBySearch(string TableName, int Index)
+        {
+            DataTable dataTable = ReturnDataTable(TableName);
+            DataRow dataRow = null;
+            for(int i=0; i < dataTable.Rows.Count; i++) { 
+                if (int.Parse(dataTable.Rows[i].ItemArray[0].ToString()) == Index) { 
+                    dataRow = dataTable.Rows[i];
+                    break;
+                }
+            }
             return dataRow.ItemArray;
         }
 
