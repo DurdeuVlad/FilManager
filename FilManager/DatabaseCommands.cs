@@ -16,7 +16,22 @@ namespace FilManager
         public static string sqlConnection = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" 
 + Directory.GetCurrentDirectory() + "\\userList.mdf;Integrated Security=True;Connect Timeout=30";
 
-
+        public static int GetColumnByName(string TableName, string ColumnName)
+        {
+            DataTable dataTable = ReturnDataTable(TableName);
+            int result = 0;
+            int i = 0;
+            foreach (object obj in dataTable.Columns)
+            {
+                if (dataTable.Columns[i].ToString() == ColumnName)
+                {
+                    result = i;
+                    break;
+                }
+                i++;
+            }
+            return result;
+        }
         public static string GetCellByName(string TableName, string ColumnName, int Row)
         {
             DataTable dataTable = ReturnDataTable(TableName);

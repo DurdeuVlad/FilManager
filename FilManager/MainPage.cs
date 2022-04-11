@@ -133,6 +133,13 @@ namespace FilManager
             ShowData("FILAMENT_ROLLS", "FILAMENT ROLLS");
             button_add.Enabled = true;
             button_Edit.Enabled = button_add.Enabled && button_remove.Enabled;
+            //add to FILAMENT_ROLLS GRAMS_CURRENT from prints GRAMS_USED (condition 1)
+            for (int i = 0; i < DatabaseCommands.GetEntryCount("FILAMENT_ROLLS"); i++)
+            {
+                object sum = int.Parse(DatabaseCommands.GetCellByName("FILAMENT_ROLLS", "GRAMS_START", i)) - DatabaseCommands.ColumnSum("PRINTS", i, 1, DatabaseCommands.GetColumnByName("PRINTS", "GRAMS_USED"));
+                DatabaseCommands.UpdateItemRow("FILAMENT_ROLLS", i,
+                     sum, DatabaseCommands.GetColumnByName("FILAMENT_ROLLS", "GRAMS_CURRENT"));
+            }
         }
 
         private void button_Prints_Click(object sender, EventArgs e)
@@ -169,6 +176,12 @@ namespace FilManager
             ShowNeeded("CLIENTS");
             button_add.Enabled = !SelectedClient.IsNull();
             button_Edit.Enabled = button_add.Enabled && button_remove.Enabled;
+            //add to commands PRICE_GRAMS from prints GRAMS_USED (condition 1)
+            for (int i = 0; i < DatabaseCommands.GetEntryCount("COMMANDS"); i++)
+            {
+                object sum = DatabaseCommands.ColumnSum("PRINTS", i, 1, DatabaseCommands.GetColumnByName("PRINTS", "GRAMS_USED"));
+                DatabaseCommands.UpdateItemRow("COMMANDS", i, sum, DatabaseCommands.GetColumnByName("COMMANDS", "PRICE_GRAMS"));
+            }
         }
 
         private void button_Users_Click(object sender, EventArgs e)
