@@ -98,7 +98,7 @@ namespace FilManager
                    {
                        UseDefaultCredentials = false,
                        Port = 587,
-                       Credentials = new NetworkCredential("fil.manager.app@gmail.com",       "thebestapp!"),
+                       Credentials = new NetworkCredential(""),
                        EnableSsl = true,
                    };
                    try
