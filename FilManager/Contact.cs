@@ -37,7 +37,7 @@ namespace FilManager
             button_SendEmail.Enabled = false;
             label_Feedback.Text = "Email successfully sent!";
             // confirmation email
-            EmailManager.sendEmail(email, "Ticket #" 
+            /*EmailManager.sendEmail(email, "Ticket #" 
                 + a +" sent",
                 "Ticket #" + a + " was sent to our support team.\n" 
                 + "Your message:\n\""+ textBox_YourMessage.Text+"\""+
@@ -54,6 +54,7 @@ namespace FilManager
                 "\n " +
                 "\n " +
                 "We wish you all the best,\nFilManager Team");
+            */
         }
     }
 }

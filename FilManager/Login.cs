@@ -53,7 +53,7 @@ namespace FilManager
                 {
                     if (data.Rows[i][2].ToString().Contains(textBox_Password.Text))
                     {
-                        if (data.Rows[i][4] == DBNull.Value)
+                        /*if (data.Rows[i][4] == DBNull.Value)
                         {
                             label_Error.Text = 
                                 "Please use the password provided to\n" +
@@ -61,19 +61,19 @@ namespace FilManager
                             break;
                         }
                         else
-                        {
+                        {*/
                             UpdateLoginData(sqlDataAdapter, i);
                             _MainPage.LoginEmail = textBox_Email.Text;
                             _MainPage.Password = textBox_Password.Text;
                             _MainPage.UserId = i;
                             this.Close();
-                        }
+                        //}
                     }
                     else if (data.Rows[i][5]!=null && data.Rows[i][5].ToString().Contains(textBox_Password.Text))
                     {
                         UpdateLoginData(sqlDataAdapter, i);
                         // SEND EMAIL
-                        EmailManager.sendEmail(textBox_Email.Text,
+                        /*EmailManager.sendEmail(textBox_Email.Text,
                             "FilManager - Account Recovery - Successful Login Detected",
                             "Hello! We have detected a successful login attempt on your account.\n" +
                             "IMPORTANT: If you didn't log in at this time we strongly " +
@@ -89,7 +89,7 @@ namespace FilManager
                             "\n " +
                             "\n " +
                             "We wish you all the best,\nFilManager Team");
-                    
+                    */
                         _MainPage.LoginEmail = textBox_Email.Text;
                         _MainPage.Password = textBox_Password.Text;
                         this.Close();

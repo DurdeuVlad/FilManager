@@ -16,7 +16,8 @@ namespace FilManager
 {
     public partial class Recovery : Form
     {
-        SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\GitHub Project\FilManager\FilManager\userList.mdf;Integrated Security=True;Connect Timeout=30");
+        SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename="
++ Directory.GetCurrentDirectory() + "\\userList.mdf;Integrated Security=True;Connect Timeout=30");
 
         public Recovery()
         {
@@ -71,7 +72,7 @@ namespace FilManager
                 if (EmailExists)
                 {
                     // SEND EMAIL
-                    if(EmailManager.sendEmail(textBox_Email.Text,
+                    /*if(EmailManager.sendEmail(textBox_Email.Text,
                         "FilManager - Account Recovery - Further Intructions",
                         "Hello! We have received recovery request for your account. \n" +
                         "IMPORTANT: If you didn't request an account recovery we strongly " +
@@ -89,6 +90,7 @@ namespace FilManager
                     {
                         label_Feedback.Text = "An internal error has occurred. Please try again later."; 
                     }
+                    */
                 }
             }
             else

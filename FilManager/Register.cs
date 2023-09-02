@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.IO;
 using System.Text;
 using System.Windows.Forms;
 
@@ -11,7 +12,8 @@ namespace FilManager
 {
     public partial class Register : Form
     {
-        SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\GitHub Project\FilManager\FilManager\userList.mdf;Integrated Security=True;Connect Timeout=30");
+        SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename="
++ Directory.GetCurrentDirectory() + "\\userList.mdf;Integrated Security=True;Connect Timeout=30");
 
         public Register()
         {
@@ -65,9 +67,9 @@ namespace FilManager
 
                 command.ExecuteNonQuery();
                 connection.Close();
-                ModifyError("Account created successfully. \nCheck your email for further instructions.");
+                ModifyError("Account created successfully. \nYou may login.");
                 
-                EmailManager.sendEmail(textBox_Email.Text,
+                /*EmailManager.sendEmail(textBox_Email.Text,
                         "FilManager - Account Verification",
                         "Hello! Thank you for creating a new account! " +
                         "\nPlease follow the instructions bellow to activate your account \n" +
@@ -80,7 +82,7 @@ namespace FilManager
                         "\n" +
                         "If you didn't request a account creation you can safely " +
                         "ignore this email.\n" +
-                        "We wish you all the best,\nFilManager Team");
+                        "We wish you all the best,\nFilManager Team");*/
             }
         }
 
