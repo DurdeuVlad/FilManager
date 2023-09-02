@@ -16,8 +16,12 @@ namespace FilManager
 {
     public partial class Recovery : Form
     {
+<<<<<<< HEAD
         SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename="
 + Directory.GetCurrentDirectory() + "\\userList.mdf;Integrated Security=True;Connect Timeout=30");
+=======
+        SqlConnection connection = new SqlConnection(DatabaseCommands.sqlConnection);
+>>>>>>> NEWMAIN
 
         public Recovery()
         {
@@ -85,18 +89,24 @@ namespace FilManager
                         "\n" +
                         "\n" +
                         "We wish you all the best,\nFilManager Team")) 
-                    { }
+                    */
+                     }
                     else
                     {
                         label_Feedback.Text = "An internal error has occurred. Please try again later."; 
+<<<<<<< HEAD
                     }
                     */
+=======
+                    
+>>>>>>> NEWMAIN
                 }
             }
             else
             {
                 label_Feedback.Text = "Invalid email. Please try again.";
                 // DON'T
+                /// ok
             }
         }
 

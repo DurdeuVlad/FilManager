@@ -53,7 +53,12 @@ namespace FilManager
                 {
                     if (data.Rows[i][2].ToString().Contains(textBox_Password.Text))
                     {
+<<<<<<< HEAD
                         /*if (data.Rows[i][4] == DBNull.Value)
+=======
+                        /*
+                        if (data.Rows[i][4] == DBNull.Value)
+>>>>>>> NEWMAIN
                         {
                             label_Error.Text = 
                                 "Please use the password provided to\n" +
@@ -61,7 +66,12 @@ namespace FilManager
                             break;
                         }
                         else
+<<<<<<< HEAD
                         {*/
+=======
+                        {
+                            */
+>>>>>>> NEWMAIN
                             UpdateLoginData(sqlDataAdapter, i);
                             _MainPage.LoginEmail = textBox_Email.Text;
                             _MainPage.Password = textBox_Password.Text;
@@ -89,7 +99,11 @@ namespace FilManager
                             "\n " +
                             "\n " +
                             "We wish you all the best,\nFilManager Team");
+<<<<<<< HEAD
                     */
+=======
+                       */
+>>>>>>> NEWMAIN
                         _MainPage.LoginEmail = textBox_Email.Text;
                         _MainPage.Password = textBox_Password.Text;
                         this.Close();

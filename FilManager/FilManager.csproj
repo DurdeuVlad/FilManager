@@ -120,6 +120,24 @@
     <Compile Include="AddDialog_Clients.Designer.cs">
       <DependentUpon>AddDialog_Clients.cs</DependentUpon>
     </Compile>
+    <Compile Include="AddDialog_Commands.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddDialog_Commands.Designer.cs">
+      <DependentUpon>AddDialog_Commands.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddDialog_Printers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddDialog_Printers.Designer.cs">
+      <DependentUpon>AddDialog_Printers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddDialog_Prints.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddDialog_Prints.Designer.cs">
+      <DependentUpon>AddDialog_Prints.cs</DependentUpon>
+    </Compile>
     <Compile Include="Contact.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -161,6 +179,7 @@
     <Compile Include="Register.Designer.cs">
       <DependentUpon>Register.cs</DependentUpon>
     </Compile>
+    <Compile Include="StaticClasses.cs" />
     <Compile Include="StructHolder.cs" />
     <Compile Include="TEst.cs">
       <SubType>Form</SubType>
@@ -185,8 +204,17 @@
     <EmbeddedResource Include="AddDialog_Clients.resx">
       <DependentUpon>AddDialog_Clients.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AddDialog_Commands.resx">
+      <DependentUpon>AddDialog_Commands.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AddDialog_FilamentRolls.resx">
       <DependentUpon>AddDialog_FilamentRolls.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddDialog_Printers.resx">
+      <DependentUpon>AddDialog_Printers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddDialog_Prints.resx">
+      <DependentUpon>AddDialog_Prints.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Contact.resx">
       <DependentUpon>Contact.cs</DependentUpon>

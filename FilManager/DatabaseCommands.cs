@@ -15,7 +15,144 @@ namespace FilManager
 
         public static string sqlConnection = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" 
 + Directory.GetCurrentDirectory() + "\\userList.mdf;Integrated Security=True;Connect Timeout=30";
-        //@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\GitHub Project\FilManager\FilManager\userList.mdf;Integrated Security=True;Connect Timeout=30
+
+        public static int GetColumnByName(string TableName, string ColumnName)
+        {
+            DataTable dataTable = ReturnDataTable(TableName);
+            int result = 0;
+            int i = 0;
+            foreach (object obj in dataTable.Columns)
+            {
+                if (dataTable.Columns[i].ToString() == ColumnName)
+                {
+                    result = i;
+                    break;
+                }
+                i++;
+            }
+            return result;
+        }
+        public static string GetCellByName(string TableName, string ColumnName, int Row)
+        {
+            DataTable dataTable = ReturnDataTable(TableName);
+            DataRow dataRow = dataTable.Rows[Row];
+            string result = "";
+            int i = 0;
+            foreach(object obj in dataRow.ItemArray)
+            {
+                if (dataTable.Columns[i].ToString() == ColumnName)
+                {
+                    result = obj.ToString();
+                    break;
+                }
+                i++;
+            }
+            return result;
+        }
+        
+        public static int GetEntryCount(string TableName)
+        {
+            return ReturnDataTable(TableName).Rows.Count;
+        }
+
+        /// <summary>
+        /// Updates a single item from a row
+        /// </summary>
+        /// <param name="TableName"></param>
+        /// <param name="editRow"></param>
+        /// <param name="item"></param>
+        /// <param name="index"></param>
+        public static void UpdateItemRow(string TableName, int editRow, object item, int index)
+        {
+            DataTable dataTable = ReturnDataTable(TableName);
+            DataRow dataRow = dataTable.Rows[editRow];
+            dataRow[index] = item;
+            RemoveEntry(TableName, editRow);
+            InsertDataRow(dataRow, TableName);
+        }
+
+        /// <summary>
+        /// Adds every entry of from sumColumn which conditionColumn.Coloumns[index] is == conditionIndex
+        /// </summary>
+        /// <param name="TableName"></param>
+        /// <param name="index"></param>
+        /// <param name="column"></param>
+        /// <returns></returns>
+        public static float ColumnSum(string TableName, int conditionIndex, int conditionColumn, int sumColumn)
+        {
+            float sum = 0;
+            DataTable dataTable = ReturnDataTable(TableName);
+            foreach (DataRow dataRow in dataTable.Rows)
+            {
+                if (int.Parse(dataRow.ItemArray[conditionColumn].ToString()) == conditionIndex) { 
+                    sum += int.Parse(dataRow.ItemArray[sumColumn].ToString());
+                }
+            }
+            return sum;
+        }
+
+        /// <summary>
+        /// Will get the smallest unique index available
+        /// </summary>
+        /// <param name="TableName"></param>
+        /// <returns></returns>
+        public static int GetIndex(string TableName)
+        {
+            int index = -1;
+            List<int> ins = new List<int>();
+            DataTable dataTable = ReturnDataTable(TableName);
+            foreach(DataRow dataRow in dataTable.Rows)
+            {
+                ins.Add(int.Parse(dataRow.ItemArray[0].ToString()));
+            }
+            for(int i=0;i<= dataTable.Rows.Count; i++)
+            {
+                if (!ins.Contains(i))
+                {
+                    index = i;
+                    break;
+                }
+            }
+            return index;
+        }
+
+
+
+        /// <summary>
+        /// Gets an entry from the table
+        /// </summary>
+        /// <param name="TableName"></param>
+        /// <param name="Index"></param>
+        /// <returns></returns>
+        public static object[] GetEntryByRow(string TableName, int Index)
+        {
+            DataTable dataTable = ReturnDataTable(TableName);
+            DataRow dataRow;
+            try {
+                dataRow = dataTable.Rows[Index];
+                return dataRow.ItemArray;
+            }
+            catch (Exception)
+            {
+
+                return GetEntryBySearch(TableName, Index);
+            }
+            
+        }
+
+        public static object[] GetEntryBySearch(string TableName, int Index)
+        {
+            DataTable dataTable = ReturnDataTable(TableName);
+            DataRow dataRow = null;
+            for(int i=0; i < dataTable.Rows.Count; i++) { 
+                if (int.Parse(dataTable.Rows[i].ItemArray[0].ToString()) == Index) { 
+                    dataRow = dataTable.Rows[i];
+                    break;
+                }
+            }
+            return dataRow.ItemArray;
+        }
+
 
         /// <summary>
         /// Clasa asta verifica daca exista emailul si returneaza true daca exista,
@@ -154,18 +291,6 @@ namespace FilManager
             return data;
         }
 
-        /// <summary>
-        /// updateaza un dataTable bazat pe dataTableul si pe numele dat, returneaza debug data
-        /// </summary>
-        /// <param name="name">Numele bazei de date</param>
-        /// <param dataTable="dataTable">Baza de data updatata</param>
-        /// <returns></returns>
-        [Obsolete("Does not work, needs fixing")]
-        public static string InsertDataTable(string name, DataRow dataRow)
-        {
-            
-            return "Updated table "+ name + " the item succesfully";
-        }
 
         /// <summary>
         /// updateaza un dataTable bazat pe dataTableul si pe numele dat, returneaza debug data
@@ -218,7 +343,6 @@ namespace FilManager
             commandString += " Values (";
             foreach (string aux in vs)
             {
-                //commandString = commandString + aux + "=@" + aux;
                 commandString += "@" + aux;
                 if (vs.IndexOf(aux) < vs.Count - 1)
                 {
@@ -233,11 +357,9 @@ namespace FilManager
             foreach (string aux in vs)
             {
                 try
-                {
-                    sqlCommand.Parameters.Add("@" + aux,
+                {                    sqlCommand.Parameters.Add("@" + aux,
                         SqlHelper.GetDbType(dataRow.Table.Columns[vs.IndexOf(aux)].DataType), 50, aux);
-                    sqlCommand.Parameters["@" + aux].Value = dataRow.ItemArray[vs.IndexOf(aux)];
-                }
+                    sqlCommand.Parameters["@" + aux].Value = dataRow.ItemArray[vs.IndexOf(aux)];                }
                 catch (Exception e)
                 {
                     throw new ArgumentException($"NULL is not a supported .NET class, at " + aux
@@ -245,25 +367,23 @@ namespace FilManager
                         + " dataRow.Table.Columns[vs.IndexOf(aux)]=" + dataRow.Table.Columns[vs.IndexOf(aux)].DataType);
                 }
             }
-
-            try
-            {
+            try            {
                 sqlCommand.ExecuteNonQuery();
             }
-            catch (Exception e)
+            catch (Exception e)    
             {
+                RemoveEntry(ID: (int)dataRow.ItemArray[0], TableName: TableName);
                 throw new ArgumentException($"Syntax Error " + e.Message + "\n Command: " + commandString + "\nItem array " + dataRow.ItemArray[0]);
             }
             connection.Close();
-            return "Updated table " + TableName + " the item succesfully";
+            return "Updated table " + TableName + " the item succesfully";        }
         }
-    }
+
+    
 
     public static class SqlHelper
     {
         private static Dictionary<Type, SqlDbType> typeMap;
-
-        // Create and populate the dictionary in the static constructor
         static SqlHelper()
         {
             typeMap = new Dictionary<Type, SqlDbType>();
@@ -282,13 +402,9 @@ namespace FilManager
             typeMap[typeof(float)] = SqlDbType.Real;
             typeMap[typeof(double)] = SqlDbType.Float;
             typeMap[typeof(TimeSpan)] = SqlDbType.Time;
-            /* ... and so on ... */
         }
-
-        // Non-generic argument-based method
         public static SqlDbType GetDbType(Type giveType)
         {
-            // Allow nullable types to be handled
             giveType = Nullable.GetUnderlyingType(giveType) ?? giveType;
 
             if (typeMap.ContainsKey(giveType))
@@ -299,7 +415,6 @@ namespace FilManager
             throw new ArgumentException($"{giveType.FullName} is not a supported .NET class");
         }
 
-        // Generic version
         public static SqlDbType GetDbType<T>()
         {
             return GetDbType(typeof(T));

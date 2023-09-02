@@ -28,6 +28,16 @@ namespace FilManager
         /// 
         public static bool sendEmail(string recipientEmail, string subject, string body)
         {
+<<<<<<< HEAD
+=======
+            SmtpClient smtpClient = new SmtpClient("smtp.gmail.com")
+            {
+                UseDefaultCredentials = false,
+                Port = 587,
+                //Credentials = new NetworkCredential(""),
+                EnableSsl = true,
+            };
+>>>>>>> NEWMAIN
             try
             {
                 // Use your own OAuth 2.0 credentials JSON file

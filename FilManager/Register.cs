@@ -12,8 +12,12 @@ namespace FilManager
 {
     public partial class Register : Form
     {
+<<<<<<< HEAD
         SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename="
 + Directory.GetCurrentDirectory() + "\\userList.mdf;Integrated Security=True;Connect Timeout=30");
+=======
+        SqlConnection connection = new SqlConnection(DatabaseCommands.sqlConnection);
+>>>>>>> NEWMAIN
 
         public Register()
         {
@@ -67,9 +71,15 @@ namespace FilManager
 
                 command.ExecuteNonQuery();
                 connection.Close();
+<<<<<<< HEAD
                 ModifyError("Account created successfully. \nYou may login.");
                 
                 /*EmailManager.sendEmail(textBox_Email.Text,
+=======
+                ModifyError("Account created successfully. \nYou may login in your account now");
+                
+               /* EmailManager.sendEmail(textBox_Email.Text,
+>>>>>>> NEWMAIN
                         "FilManager - Account Verification",
                         "Hello! Thank you for creating a new account! " +
                         "\nPlease follow the instructions bellow to activate your account \n" +
@@ -82,7 +92,12 @@ namespace FilManager
                         "\n" +
                         "If you didn't request a account creation you can safely " +
                         "ignore this email.\n" +
+<<<<<<< HEAD
                         "We wish you all the best,\nFilManager Team");*/
+=======
+                        "We wish you all the best,\nFilManager Team");
+               */
+>>>>>>> NEWMAIN
             }
         }
 

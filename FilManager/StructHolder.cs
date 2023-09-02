@@ -17,20 +17,29 @@ namespace FilManager
             public void Select(int _Row, string _Name, Label _Label)
             {
                 row = _Row;
-                name = _Name;
+                name = _Name.Trim();
                 label = _Label;
-                label.Text = _Name;
+                label.Text = _Name.Trim();
             }
             public void Select(int _Row, string _Name)
             {
                 row = _Row;
-                name = _Name;
-                label.Text = _Name;
+                name = _Name.Trim();
+                label.Text = _Name.Trim();
             }
             public void Reset()
             {
                 name = "-";
                 row = -1;
+            }
+
+            public bool IsNull()
+            {
+                if (name == "-")
+                {
+                    return true;
+                }
+                return false;
             }
 
         }
