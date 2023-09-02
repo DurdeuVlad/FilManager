@@ -71,7 +71,7 @@ namespace FilManager
                 if (EmailExists)
                 {
                     // SEND EMAIL
-                    if(EmailManager.sendEmail(textBox_Email.Text,
+                    /*if(EmailManager.sendEmail(textBox_Email.Text,
                         "FilManager - Account Recovery - Further Intructions",
                         "Hello! We have received recovery request for your account. \n" +
                         "IMPORTANT: If you didn't request an account recovery we strongly " +
@@ -84,17 +84,19 @@ namespace FilManager
                         "\n" +
                         "\n" +
                         "We wish you all the best,\nFilManager Team")) 
-                    { }
+                    */
+                     }
                     else
                     {
                         label_Feedback.Text = "An internal error has occurred. Please try again later."; 
-                    }
+                    
                 }
             }
             else
             {
                 label_Feedback.Text = "Invalid email. Please try again.";
                 // DON'T
+                /// ok
             }
         }
 

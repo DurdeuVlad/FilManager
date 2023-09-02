@@ -65,9 +65,9 @@ namespace FilManager
 
                 command.ExecuteNonQuery();
                 connection.Close();
-                ModifyError("Account created successfully. \nCheck your email for further instructions.");
+                ModifyError("Account created successfully. \nYou may login in your account now");
                 
-                EmailManager.sendEmail(textBox_Email.Text,
+               /* EmailManager.sendEmail(textBox_Email.Text,
                         "FilManager - Account Verification",
                         "Hello! Thank you for creating a new account! " +
                         "\nPlease follow the instructions bellow to activate your account \n" +
@@ -81,6 +81,7 @@ namespace FilManager
                         "If you didn't request a account creation you can safely " +
                         "ignore this email.\n" +
                         "We wish you all the best,\nFilManager Team");
+               */
             }
         }
 

@@ -370,7 +370,9 @@ namespace FilManager
             try            {
                 sqlCommand.ExecuteNonQuery();
             }
-            catch (Exception e)            {
+            catch (Exception e)    
+            {
+                RemoveEntry(ID: (int)dataRow.ItemArray[0], TableName: TableName);
                 throw new ArgumentException($"Syntax Error " + e.Message + "\n Command: " + commandString + "\nItem array " + dataRow.ItemArray[0]);
             }
             connection.Close();

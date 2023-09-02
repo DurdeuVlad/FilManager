@@ -123,7 +123,7 @@ namespace FilManager
                 if (EmailExists)
                 {
                     // SEND EMAIL
-                    EmailManager.sendEmail(currentEmail,
+                    /*EmailManager.sendEmail(currentEmail,
                         "FilManager - Account Recovery - Password changed",
                         "Hello! Your password has been changed for your account. \n" +
                         "IMPORTANT: If you didn't change the password we strongly " +
@@ -137,6 +137,7 @@ namespace FilManager
                         "\n" +
                         "\n" +
                         "We wish you all the best,\nFilManager Team");
+                    */
                 }
                 label_ChangePassword_Error.Text = "Password changed!";
             }
